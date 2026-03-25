@@ -14,11 +14,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build
-        uses: shallowlight/zola-deploy-action@v1.2.0
-        env:
-          # Use the version you specified: 0.22.1
-          ZOLA_VERSION: 0.22.1
-          # The base URL from your zola.toml
-          BUILD_DIR: public
-          # Deploy to gh-pages branch
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sL https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          ./zola build
+          
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

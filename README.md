@@ -1,1 +1,1 @@
-Official site for [Boxxy Terminal] made with [Zola](https://www.getzola.org/) amd [Bulma](https://bulma.io/)
+Official site for [Boxxy Terminal](https://github.com/miifrommera/boxxy/) made with [Zola](https://www.getzola.org/) amd [Bulma](https://bulma.io/)
