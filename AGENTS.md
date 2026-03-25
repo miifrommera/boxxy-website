@@ -1,0 +1,1 @@
+This is a documentation project for Boxxy Terminal that uses Zola 0.22.1 and Bulma 1.0.4.

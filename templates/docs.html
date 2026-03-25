@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <!-- Sidebar Navigation -->
+            <aside class="column is-3">
+                <div class="sidebar">
+                    <p class="sidebar-title">Getting Started</p>
+                    <ul class="menu-list mb-5">
+                        <li><a href="/getting-started/intro" class="{% if current_path == '/getting-started/intro/' %}is-active{% endif %}">Introduction</a></li>
+                    </ul>
+
+                    <p class="sidebar-title">Features</p>
+                    <ul class="menu-list mb-5">
+                        <li><a href="/features/core" class="{% if current_path == '/features/core/' %}is-active{% endif %}">Core Features</a></li>
+                    </ul>
+
+                    <p class="sidebar-title">What Boxxy Can Do</p>
+                    <ul class="menu-list">
+                        <li><a href="/what-boxxy-can-do/use-cases" class="{% if current_path == '/what-boxxy-can-do/use-cases/' %}is-active{% endif %}">Use Cases</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="column is-9">
+                <div class="content content-area">
+                    {% if page %}
+                        {{ page.content | safe }}
+                    {% elif section %}
+                        {{ section.content | safe }}
+                    {% endif %}
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+{% endblock content %}

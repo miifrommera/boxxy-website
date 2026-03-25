@@ -1,0 +1,24 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        uses: shallowlight/zola-deploy-action@v1.2.0
+        env:
+          # Use the version you specified: 0.22.1
+          ZOLA_VERSION: 0.22.1
+          # The base URL from your zola.toml
+          BUILD_DIR: public
+          # Deploy to gh-pages branch
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

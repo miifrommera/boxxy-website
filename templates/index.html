@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="columns is-vcentered">
+            <!-- Left Side: Icon and Title -->
+            <div class="column is-5 has-text-left">
+                <div class="mb-5">
+                    <div class="boxy-badge">
+                        <img src="/boxxyclaw.svg" alt="Boxxy Icon">
+                        <div class="boxy-badge-text">
+                            <span class="feat">Featuring</span>
+                            <span class="highlight">Boxxy</span>Claw
+                        </div>
+                    </div>
+                    <h1 class="title is-2 has-text-weight-bold fancy-title">
+                        A <span class="accent-text">self-improving</span> Linux<br>
+                        Terminal via <span class="gradient-text">Memories</span><br>
+                        and <span class="gradient-text">Local Models!</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Right Side: Terminal Image -->
+            <div class="column is-7 has-text-centered">
+                <figure class="image hero-box">
+                    <img src="/hero.png" alt="Boxxy Terminal Interface" style="width: 100%; display: block;">
+                </figure>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="buttons is-centered mb-6" style="margin-top: 6rem !important;">
+            <a href="/getting-started/intro" class="boxy-button mr-4">
+                Getting Started
+            </a>
+            <a href="/what-boxxy-can-do/use-cases" class="boxy-button is-alt">
+                What Boxxy Can Do
+            </a>
+        </div>
+
+        <!-- Installation Code Block -->
+        <div class="columns is-centered mt-6">
+            <div class="column is-10">
+                <div class="installation-code fancy-box mt-0" style="position: relative; text-align: left; display: flex; align-items: center;">
+                    <pre style="flex-grow: 1;"><code id="install-command" class="language-bash">curl -sSf https://raw.githubusercontent.com/miifrommera/boxxy/main/scripts/install.sh | sh</code></pre>
+                    <button id="copy-button" class="button is-small" style="position: absolute; right: 0.75rem; background-color: #313244; color: #cdd6f4; border: none; border-radius: 6px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;" title="Copy to clipboard">
+                        <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#11111b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('copy-button').addEventListener('click', function() {
+        const codeText = document.getElementById('install-command').innerText;
+        const btn = document.getElementById('copy-button');
+        const copyIcon = document.getElementById('copy-icon');
+        const checkIcon = document.getElementById('check-icon');
+
+        navigator.clipboard.writeText(codeText).then(() => {
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            btn.style.backgroundColor = '#a6e3a1'; // Catppuccin Green
+            
+            setTimeout(() => {
+                copyIcon.style.display = 'block';
+                checkIcon.style.display = 'none';
+                btn.style.backgroundColor = '#313244';
+            }, 2000);
+        });
+    });
+</script>
+{% endblock content %}
