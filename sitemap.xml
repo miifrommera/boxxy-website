@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://boxxy.dev/</loc>
+    </url>
+    <url>
+        <loc>https://boxxy.dev/features/</loc>
+    </url>
+    <url>
+        <loc>https://boxxy.dev/features/core/</loc>
+    </url>
+    <url>
+        <loc>https://boxxy.dev/getting-started/</loc>
+    </url>
+    <url>
+        <loc>https://boxxy.dev/getting-started/intro/</loc>
+    </url>
+    <url>
+        <loc>https://boxxy.dev/what-boxxy-can-do/</loc>
+    </url>
+    <url>
+        <loc>https://boxxy.dev/what-boxxy-can-do/use-cases/</loc>
+    </url>
+</urlset>
