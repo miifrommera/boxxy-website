@@ -4,21 +4,18 @@
         <loc>https://boxxy.dev/</loc>
     </url>
     <url>
-        <loc>https://boxxy.dev/features/</loc>
+        <loc>https://boxxy.dev/development/</loc>
     </url>
     <url>
-        <loc>https://boxxy.dev/features/core/</loc>
+        <loc>https://boxxy.dev/features/</loc>
     </url>
     <url>
         <loc>https://boxxy.dev/getting-started/</loc>
     </url>
     <url>
-        <loc>https://boxxy.dev/getting-started/intro/</loc>
+        <loc>https://boxxy.dev/how-it-works/</loc>
     </url>
     <url>
-        <loc>https://boxxy.dev/what-boxxy-can-do/</loc>
-    </url>
-    <url>
-        <loc>https://boxxy.dev/what-boxxy-can-do/use-cases/</loc>
+        <loc>https://boxxy.dev/use-cases/</loc>
     </url>
 </urlset>

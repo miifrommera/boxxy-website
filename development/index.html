@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxxy Terminal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/dev.boxxy.BoxxyTerminal.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="navbar is-dark">
+        <div class="container">
+            <div class="navbar-brand">
+                <div class="navbar-item">
+                    <a class="boxy-brand-button" href="/">
+                        <strong>Boxxy Terminal</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span>Star</span>
+                        <span class="star-count" id="github-stars">...</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <!-- Sidebar Navigation -->
+            <aside class="column is-3">
+                <div class="sidebar">
+                    <p class="sidebar-title">Getting Started</p>
+                    <ul class="menu-list mb-5">
+                        <li><a href="/getting-started" class="">Getting Started</a></li>
+                        <li><a href="/how-it-works" class="">How It Works</a></li>
+                        <li><a href="/development" class="is-active">Development</a></li>
+                    </ul>
+
+                    <p class="sidebar-title">What Boxxy Can Do</p>
+                    <ul class="menu-list">
+                        <li><a href="/features" class="">Features</a></li>
+                        <li><a href="/use-cases" class="">Use Cases</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="column is-9">
+                <div class="content content-area">
+                    
+                        <h1 id="development">Development</h1>
+<p>Boxxy is largely developed using =AI Agents=. The most efficient way to start contributing to Boxxy is to clone the repository and ask your preferred agent to read the <code>AGENTS.md</code> file to familiarize itself with the project's architecture and conventions.</p>
+<hr />
+<h2 id="workflow-committing">Workflow &amp; Committing</h2>
+<p>Boxxy is currently in an early, high-velocity development phase. To maintain maximum speed, we utilize a private =dev= branch for active development.</p>
+<p>Once a major task or feature is finalized, we squash all related commits into a single =consolidated commit= before merging into the =main= branch. While this results in larger individual commits, the logic remains easy to parse and understand when analyzed by an =Agent=.</p>
+<hr />
+<h2 id="contributing">Contributing</h2>
+<p>We welcome code contributions! However, due to the rapid pace of downstream development, traditional PRs can be difficult to merge if they fall out of sync.</p>
+<p>For the best results, we prefer =agentic-style= contributions: clear prompts accompanied by code examples or detailed implementation strategies that our internal agents can help integrate seamlessly.</p>
+<hr />
+<h2 id="building-testing">Building &amp; Testing</h2>
+<p>Boxxy is built with =Rust 1.94=. For standard development and local testing, you can use =Cargo= directly:</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">cargo</span><span style="color: #A6E3A1;"> build -p boxxy-agent -p boxxy-terminal</span></span></code></pre>
+<p>Please note that a successful Cargo build does not always guarantee identical behavior within a =Flatpak= environment, especially for components involving <code>boxxy-agent</code>.</p>
+<h3 id="building-the-flatpak">Building the Flatpak</h3>
+<p>To build and test the =Flatpak= bundle locally, follow these steps:</p>
+<ol>
+<li>
+<p><strong>Generate Sources:</strong></p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">python3</span><span style="color: #A6E3A1;"> flatpak/flatpak-cargo-generator.py Cargo.lock -o flatpak/cargo-sources.json</span></span></code></pre></li>
+<li>
+<p><strong>Build &amp; Export Bundle:</strong></p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">flatpak-builder</span><span style="color: #A6E3A1;"> --repo=repo --force-clean build-dir flatpak/dev.boxxy.BoxxyTerminal.yml</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">flatpak</span><span style="color: #A6E3A1;"> build-bundle repo boxxy.flatpak dev.boxxy.BoxxyTerminal</span></span></code></pre></li>
+</ol>
+<p><strong>Alternative:</strong> To build and install the Flatpak to your user environment in a single command:</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">flatpak-builder</span><span style="color: #A6E3A1;"> --user --install --force-clean build-dir flatpak/dev.boxxy.BoxxyTerminal.yml</span></span></code></pre>
+                    
+                    
+                    <hr style="margin-top: 3rem; background-color: #313244; height: 1px;">
+                    <div class="has-text-right">
+                        <a href="https://github.com/miifrommera/boxxy-website/edit/main/content&#x2F;development.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                            Improve this page
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+
+    <footer class="footer">
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>
