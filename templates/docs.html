@@ -9,17 +9,15 @@
                 <div class="sidebar">
                     <p class="sidebar-title">Getting Started</p>
                     <ul class="menu-list mb-5">
-                        <li><a href="/getting-started/intro" class="{% if current_path == '/getting-started/intro/' %}is-active{% endif %}">Introduction</a></li>
-                    </ul>
-
-                    <p class="sidebar-title">Features</p>
-                    <ul class="menu-list mb-5">
-                        <li><a href="/features/core" class="{% if current_path == '/features/core/' %}is-active{% endif %}">Core Features</a></li>
+                        <li><a href="/getting-started" class="{% if current_path == '/getting-started/' %}is-active{% endif %}">Getting Started</a></li>
+                        <li><a href="/how-it-works" class="{% if current_path == '/how-it-works/' %}is-active{% endif %}">How It Works</a></li>
+                        <li><a href="/development" class="{% if current_path == '/development/' %}is-active{% endif %}">Development</a></li>
                     </ul>
 
                     <p class="sidebar-title">What Boxxy Can Do</p>
                     <ul class="menu-list">
-                        <li><a href="/what-boxxy-can-do/use-cases" class="{% if current_path == '/what-boxxy-can-do/use-cases/' %}is-active{% endif %}">Use Cases</a></li>
+                        <li><a href="/features" class="{% if current_path == '/features/' %}is-active{% endif %}">Features</a></li>
+                        <li><a href="/use-cases" class="{% if current_path == '/use-cases/' %}is-active{% endif %}">Use Cases</a></li>
                     </ul>
                 </div>
             </aside>
@@ -32,6 +30,14 @@
                     {% elif section %}
                         {{ section.content | safe }}
                     {% endif %}
+                    
+                    <hr style="margin-top: 3rem; background-color: #313244; height: 1px;">
+                    <div class="has-text-right">
+                        <a href="https://github.com/miifrommera/boxxy-website/edit/main/content{{ current_path | default(value='/') | trim_end_matches(pat='/') }}.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                            Improve this page
+                        </a>
+                    </div>
                 </div>
             </main>
         </div>
