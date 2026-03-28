@@ -54,3 +54,15 @@ To build and test the =Flatpak= bundle locally, follow these steps:
 ```bash
 flatpak-builder --user --install --force-clean build-dir flatpak/dev.boxxy.BoxxyTerminal.yml
 ```
+
+---
+
+## Context
+
+One of the most important things to monitor is the exact context Boxxy sends to the model. You can inspect this by enabling debug logging:
+
+```bash
+RUST_LOG=debug cargo run -p boxxy-app
+```
+
+**Note:** Debug-level logs are typically only available when running development builds.

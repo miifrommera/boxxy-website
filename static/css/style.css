@@ -57,6 +57,27 @@ html, body {
     transform: translate(0, 0);
     box-shadow: 1px 1px 0 #a6e3a1;
 }
+.boxy-releases-button {
+    background-color: #ffffff;
+    border: 2px solid #cba6f7; /* Catppuccin Mauve */
+    border-radius: 8px;
+    padding: 0.5rem 0.8rem !important;
+    font-weight: 800;
+    color: #11111b !important;
+    box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7, 3px 3px 0 #cba6f7;
+    transform: translate(-2px, -2px);
+    transition: all 0.1s ease-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none !important;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.boxy-releases-button:hover {
+    transform: translate(0, 0);
+    box-shadow: 1px 1px 0 #cba6f7;
+}
 .boxy-github-button .star-count {
     background-color: #f1f1f1;
     color: #11111b;
@@ -122,7 +143,7 @@ html, body {
 }
 .content-area h1 { color: #f5e0dc !important; }
 .content-area h2 { color: #f2cdcd !important; }
-.content-area h3 { color: #f9e2af !important; }
+.content-area h3 { color: #f9e2af !important; font-size: 1.3em; }
 .content-area p { line-height: 1.8; margin-bottom: 1.5rem; }
 pre {
     background-color: #11111b !important;
@@ -166,8 +187,14 @@ pre code {
     padding-right: 2.5rem !important; /* Make room for the button */
 }
 .quoted-text {
-    color: #f9e2af !important; /* Catppuccin Yellow */
-    font-weight: 700;
+    color: #a6e3a1 !important; /* Catppuccin Green */
+    font-weight: normal;
+    padding: 0 0.1rem;
+    border-radius: 4px;
+}
+.highlight-text {
+    color: #f38ba8 !important; /* Catppuccin Red */
+    font-weight: normal;
     padding: 0 0.1rem;
     border-radius: 4px;
 }
@@ -398,4 +425,64 @@ pre code span[style*="color:#40a02b"] {
 }
 .boxy-button.is-dev:hover {
     box-shadow: 1px 1px 0 #a6e3a1;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .navbar-brand {
+        justify-content: center;
+        width: 100%;
+    }
+    .navbar-end {
+        justify-content: center;
+        padding-bottom: 0;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+    .section {
+        padding-top: 1rem;
+    }
+    .fancy-title {
+        font-size: 1.8rem !important;
+        text-align: center;
+    }
+    .boxy-badge {
+        margin-left: 0;
+        transform: scale(0.9);
+    }
+    .buttons.is-centered {
+        margin-top: 3rem !important;
+        flex-direction: column;
+        align-items: center;
+    }
+    .boxy-button {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 1rem;
+    }
+    .installation-code {
+        margin: 1.5rem 0;
+    }
+    .installation-code pre {
+        overflow-x: auto;
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+    #copy-button {
+        display: none; /* Hide copy button on very small screens to save space */
+    }
+    .feature-grid {
+        margin-top: 4rem;
+    }
+    .feature-item {
+        padding: 1.5rem;
+    }
+    .content-area {
+        padding: 1.5rem;
+    }
+    .sidebar {
+        margin-bottom: 2rem;
+        min-height: auto;
+    }
 }

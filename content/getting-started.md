@@ -34,14 +34,16 @@ Navigate to =Preferences= -> =APIs= and enter the connection strings for your pr
 
 ## BoxxyClaw
 
-You can toggle =BoxxyClaw= using the Claw icon located in the Headerbar. This setting is managed per-window, but you can configure an option in Preferences to always start new windows with Claw enabled.
+Press `Control + /` and send your first message to activate =BoxxyClaw=. This setting is managed per-terminal pane, but you can configure an option in Preferences to always start new terminals with Claw enabled.
 
-Claw operates in two distinct modes:
+Claw operates in two distinct modes; you can switch modes directly from the =ClawMsgBar=.
 
-- `Proactive:` Boxxy will attempt to assist immediately when a terminal error occurs or when a task fails to complete successfully. This is incredibly useful for troubleshooting multi-step workflows.
-- `Lazy:` When an error occurs, Claw will wait and offer a prompt to look for a solution. The Claw Indicator will become visible with a 5-second cooldown, giving you the choice to request help.
+- **Proactive:** Boxxy will attempt to assist immediately when a terminal error occurs or when a task fails to complete successfully. This is incredibly useful for troubleshooting multi-step workflows.
+- **Lazy:** When an error occurs, Claw will wait and offer a prompt to look for a solution. The Claw Indicator will become visible with a 5-second cooldown, giving you the choice to request help.
 
-Press `Control + /` to message BoxxyClaw.
+You can also use the Message Bar to paste large chunks of text or even **images** directly from your clipboard to provide extra context to the agent!
+
+ 
 
 ---
 
@@ -53,10 +55,20 @@ Need dynamic inputs? Define runtime variables using the `{{{my_var}}}` syntax. B
 
 All your scripts are safely stored locally at `config/boxxy-terminal/bookmarks`.
 
----
+## Session Resume
+
+Never lose your context again. Boxxy automatically tracks your active terminal sessions and allows you to resume any of your **last 10 sessions** in any terminal pane.
+
+When you resume a session, Boxxy restores:
+- Your full command history and AI conversation history.
+- The exact agent identity you were working with.
+- Your last known working directory (CWD).
+
+To resume a session, press `Control + /` to open the **Message Bar** and type `/resume`. Boxxy will present your recent sessions, making it easy to pick up exactly where you left off after a restart or a lunch break.
+
+--- 
 
 ## Agent Skills
-
 From =Preferences=, open the =config folder= and navigate to `boxxyclaw/skills`. Boxxy supports standard [Agentic Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) (and a dedicated Boxxy Skills marketplace is planned!). 
 
 Be sure to add your specific system specifications to the default "linux-system" skill so Boxxy understands your environment perfectly.
@@ -71,10 +83,17 @@ While the core functionality is present, Boxxy is currently in =PREVIEW=. Becaus
 
 However, your =Long Term Memory= will survive updates! You can manually view and edit these persistent facts in `.config/boxxy-terminal/boxxyclaw/MEMORY.md`.
 
----
+--- 
+
+## Token Consumption
+
+Boxxy is nor context-cheap! To perform at its best, it simultaneously processes a comprehensive set of data: the core toolbox, your active skills, relevant memories, and a snapshot of the terminal buffer. 
+
+You can monitor real-time usage via the =ClawSidebar=. However, modern flagship models (like Gemini, Claude, and GPT) utilize advanced **Context Caching**. This typically reduces the actual billable tokens by up to 80-90% for subsequent requests in the same session. To inspect the exact payload Boxxy is broadcasting, you can [enable debug logging](@/development.md#context).
+
+--- 
 
 ## Other Tweaks
-
 Depending on your distribution, you may need to raise your system's `inotify` limits. You can check your current values with:
 
 ```bash

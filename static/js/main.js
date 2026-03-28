@@ -124,13 +124,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (node.nodeType === Node.TEXT_NODE) {
                 const val = node.nodeValue;
                 const quoteRegex = /"([^"]+)"|“([^”]+)”/g;
-                const highlightRegex = /=([^ \n=](?:[^=]*?[^ \n=])?)=/g;
+                // Highlight regex: look for =text= but ensure it's not inside an HTML tag.
+                // We do this by ensuring there is a space or start-of-line before it, 
+                // and a space, punctuation, or end-of-line after it to avoid matching HTML attributes.
+                const highlightRegex = /(^|\s)=([^ \n=](?:[^=]*?[^ \n=])?)=($|\s|[.,!?;:])/g;
 
-                if (quoteRegex.test(val) || highlightRegex.test(val)) {
+                if (quoteRegex.test(val) || /(^|\s)=([^ \n=](?:[^=]*?[^ \n=])?)=($|\s|[.,!?;:])/.test(val)) {
                     const span = document.createElement('span');
                     quoteRegex.lastIndex = 0;
-                    highlightRegex.lastIndex = 0;
-
+                    
                     let html = val
                         .replace(/&/g, '&amp;')
                         .replace(/</g, '&lt;')
@@ -141,16 +143,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         `<span class="quoted-text">"${p1 || p2}"</span>`
                     );
 
-                    // Then handle =highlights= (remove =)
-                    html = html.replace(highlightRegex, (match, p1) => 
-                        `<span class="quoted-text">${p1}</span>`
+                    // Then handle =highlights= (remove =), using the safer regex with boundaries
+                    html = html.replace(highlightRegex, (match, before, p1, after) => 
+                        `${before}<span class="highlight-text">${p1}</span>${after}`
                     );
 
                     span.innerHTML = html;
                     node.parentNode.replaceChild(span, node);
                 }
             } else if (node.nodeType === Node.ELEMENT_NODE) {
-                if (!['CODE', 'PRE', 'A'].includes(node.tagName)) {
+                // Don't re-process things we've already styled
+                if (!['CODE', 'PRE', 'A'].includes(node.tagName) && !node.classList.contains('quoted-text') && !node.classList.contains('highlight-text')) {
                     Array.from(node.childNodes).forEach(processNode);
                 }
             }
