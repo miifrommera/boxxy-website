@@ -21,8 +21,14 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-end">
-                <div class="navbar-item">
+            <div class="navbar-end" style="gap: 1rem; align-items: center; display: flex;">
+                <div class="navbar-item" style="padding: 0;">
+                    <a class="boxy-releases-button" href="https://github.com/miifrommera/boxxy/releases" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <span>Releases</span>
+                    </a>
+                </div>
+                <div class="navbar-item" style="padding: 0;">
                     <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         <span>Star</span>
@@ -59,8 +65,32 @@
             <main class="column is-9">
                 <div class="content content-area">
                     
-                        <h1 id="core-features">Core Features</h1>
-<p>This page is not ready yet!</p>
+                        <h1 id="terminal-features"><a class="zola-anchor" href="#terminal-features" aria-label="Anchor link for: terminal-features">🔗</a>Terminal Features</h1>
+<p>Boxxy is, first and foremost, a high-performance Linux terminal built for modern developers. Before you even turn on the AI features, you're using a top-tier terminal emulator designed for speed, clarity, and deep shell integration.</p>
+<hr />
+<h3 id="the-core-engine-boxxy-vte"><a class="zola-anchor" href="#the-core-engine-boxxy-vte" aria-label="Anchor link for: the-core-engine-boxxy-vte">🔗</a>The Core Engine (boxxy-vte)</h3>
+<p>At the heart of Boxxy is a custom-built, 100% Rust terminal engine. It replaces traditional C-based libraries with a modern, async-first architecture.</p>
+<ul>
+<li><strong>GPU Accelerated Rendering</strong>: Uses GTK4's GSK scene graph to render text and images with silky-smooth performance and zero tearing.</li>
+<li><strong>Kittygraphics Support</strong>: Native support for the Kitty graphics protocol, allowing you to render high-resolution images and even rich media directly in your terminal grid.</li>
+<li><strong>Semantic Shell Integration</strong>: Full support for <strong>OSC 133</strong> markers. Boxxy understands the difference between your prompt, your command, and the resulting output, allowing for smarter context awareness.</li>
+<li><strong>Bidirectional Reflow</strong>: Smart text wrapping and unwrapping when you resize your window, ensuring your logs remain readable at any size.</li>
+<li><strong>Advanced Regex Search</strong>: A lightning-fast, Unicode-aware search system with automatic viewport scrolling and word-boundary detection.</li>
+<li><strong>Robust CWD Tracking</strong>: Instant directory tracking via <strong>OSC 7</strong>, which works seamlessly even over SSH or through sandboxed environments.</li>
+</ul>
+<h3 id="ui-layout"><a class="zola-anchor" href="#ui-layout" aria-label="Anchor link for: ui-layout">🔗</a>UI &amp; Layout</h3>
+<p>Boxxy is designed to maximize your screen real estate and keep you focused on your work.</p>
+<ul>
+<li><strong>Dynamic Splits with Soft Swap</strong>: Split your terminal vertically or horizontally as many times as you need. With "Soft Swap", you can seamlessly exchange the contents of two active panes via a simple keyboard shortcut without breaking your workflow.</li>
+<li><strong>iTerm2 Themes</strong>: Fully supports the popular iTerm2 color scheme format, giving you access to thousands of community-created themes. Switch between them instantly.</li>
+<li><strong>Seamless Background Images</strong>: Set a background image for your entire tab. Boxxy intelligently spans the image across all transparent terminal splits for a gorgeous, unified look.</li>
+<li><strong>Inactive Pane Dimming</strong>: Never get lost in your splits again. Boxxy automatically dims inactive terminal panes so your active focus is always crystal clear.</li>
+<li><strong>Modern Hyperlinks</strong>: Support for <strong>OSC 8</strong> hyperlinks with robust media previews on hover, making your terminal feel more like a modern web browser.</li>
+<li><strong>Native Progress Bars</strong>: Intercepts <strong>OSC 9;4</strong> sequences (like those from Cargo or Flatpak) to render native GTK progress bars directly in the UI.</li>
+</ul>
+<hr />
+<h2 id="agentic-features"><a class="zola-anchor" href="#agentic-features" aria-label="Anchor link for: agentic-features">🔗</a>Agentic Features</h2>
+<p>And then there is the =Agentic Part= 🤖</p>
 
                     
                     

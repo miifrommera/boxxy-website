@@ -21,8 +21,14 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-end">
-                <div class="navbar-item">
+            <div class="navbar-end" style="gap: 1rem; align-items: center; display: flex;">
+                <div class="navbar-item" style="padding: 0;">
+                    <a class="boxy-releases-button" href="https://github.com/miifrommera/boxxy/releases" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <span>Releases</span>
+                    </a>
+                </div>
+                <div class="navbar-item" style="padding: 0;">
                     <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         <span>Star</span>
@@ -38,7 +44,7 @@
     <div class="container">
         <div class="columns is-vcentered">
             <!-- Left Side: Icon and Title -->
-            <div class="column is-5 has-text-left">
+            <div class="column is-5 has-text-left-tablet has-text-centered-mobile">
                 <div class="mb-5">
                     <div class="boxy-badge">
                         <img src="/boxxyclaw.svg" alt="Boxxy Icon">
@@ -72,9 +78,6 @@
             <a href="/getting-started" class="boxy-button mr-4">
                 Getting Started
             </a>
-            <a href="/use-cases" class="boxy-button is-alt mr-4">
-                What Boxxy Can Do
-            </a>
             <a href="/development" class="boxy-button is-dev">
                 Development
             </a>
@@ -91,6 +94,19 @@
                         <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#11111b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Narrative Bridge -->
+        <div class="columns is-centered mt-6 mb-6">
+            <div class="column is-8 has-text-centered">
+                <h2 class="title is-3 fancy-title mb-4">Not just an app <em>on</em> the terminal. It <em>is</em> the terminal.</h2>
+                <p class="subtitle is-5" style="line-height: 1.6;">
+                    Most AI coding tools are trapped in your editor or run as isolated CLI commands. Boxxy is a terminal emulator that natively understands your environment. It watches your workflow, catches your errors, and can autonomously fix broken dependencies or manage system configurations using the tools you already have installed.
+                </p>
+                <p class="is-size-5 has-text-weight-bold mt-4" style="color: #a6e3a1;">
+                    Just press <span class="quoted-text">Control + /</span> and you're ready to go!
+                </p>
             </div>
         </div>
 

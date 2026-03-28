@@ -21,8 +21,14 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-end">
-                <div class="navbar-item">
+            <div class="navbar-end" style="gap: 1rem; align-items: center; display: flex;">
+                <div class="navbar-item" style="padding: 0;">
+                    <a class="boxy-releases-button" href="https://github.com/miifrommera/boxxy/releases" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <span>Releases</span>
+                    </a>
+                </div>
+                <div class="navbar-item" style="padding: 0;">
                     <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         <span>Star</span>
@@ -59,22 +65,22 @@
             <main class="column is-9">
                 <div class="content content-area">
                     
-                        <h1 id="development">Development</h1>
+                        <h1 id="development"><a class="zola-anchor" href="#development" aria-label="Anchor link for: development">🔗</a>Development</h1>
 <p>Boxxy is largely developed using =AI Agents=. The most efficient way to start contributing to Boxxy is to clone the repository and ask your preferred agent to read the <code>AGENTS.md</code> file to familiarize itself with the project's architecture and conventions.</p>
 <hr />
-<h2 id="workflow-committing">Workflow &amp; Committing</h2>
+<h2 id="workflow-committing"><a class="zola-anchor" href="#workflow-committing" aria-label="Anchor link for: workflow-committing">🔗</a>Workflow &amp; Committing</h2>
 <p>Boxxy is currently in an early, high-velocity development phase. To maintain maximum speed, we utilize a private =dev= branch for active development.</p>
 <p>Once a major task or feature is finalized, we squash all related commits into a single =consolidated commit= before merging into the =main= branch. While this results in larger individual commits, the logic remains easy to parse and understand when analyzed by an =Agent=.</p>
 <hr />
-<h2 id="contributing">Contributing</h2>
+<h2 id="contributing"><a class="zola-anchor" href="#contributing" aria-label="Anchor link for: contributing">🔗</a>Contributing</h2>
 <p>We welcome code contributions! However, due to the rapid pace of downstream development, traditional PRs can be difficult to merge if they fall out of sync.</p>
 <p>For the best results, we prefer =agentic-style= contributions: clear prompts accompanied by code examples or detailed implementation strategies that our internal agents can help integrate seamlessly.</p>
 <hr />
-<h2 id="building-testing">Building &amp; Testing</h2>
+<h2 id="building-testing"><a class="zola-anchor" href="#building-testing" aria-label="Anchor link for: building-testing">🔗</a>Building &amp; Testing</h2>
 <p>Boxxy is built with =Rust 1.94=. For standard development and local testing, you can use =Cargo= directly:</p>
 <pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">cargo</span><span style="color: #A6E3A1;"> build -p boxxy-agent -p boxxy-terminal</span></span></code></pre>
 <p>Please note that a successful Cargo build does not always guarantee identical behavior within a =Flatpak= environment, especially for components involving <code>boxxy-agent</code>.</p>
-<h3 id="building-the-flatpak">Building the Flatpak</h3>
+<h3 id="building-the-flatpak"><a class="zola-anchor" href="#building-the-flatpak" aria-label="Anchor link for: building-the-flatpak">🔗</a>Building the Flatpak</h3>
 <p>To build and test the =Flatpak= bundle locally, follow these steps:</p>
 <ol>
 <li>
@@ -87,6 +93,12 @@
 </ol>
 <p><strong>Alternative:</strong> To build and install the Flatpak to your user environment in a single command:</p>
 <pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">flatpak-builder</span><span style="color: #A6E3A1;"> --user --install --force-clean build-dir flatpak/dev.boxxy.BoxxyTerminal.yml</span></span></code></pre>
+<hr />
+<h2 id="context"><a class="zola-anchor" href="#context" aria-label="Anchor link for: context">🔗</a>Context</h2>
+<p>One of the most important things to monitor is the exact context Boxxy sends to the model. You can inspect this by enabling debug logging:</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span>RUST_LOG</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">debug</span><span style="color: #89B4FA;font-style: italic;"> cargo</span><span style="color: #A6E3A1;"> run -p boxxy-app</span></span></code></pre>
+<p><strong>Note:</strong> Debug-level logs are typically only available when running development builds.</p>
+
                     
                     
                     <hr style="margin-top: 3rem; background-color: #313244; height: 1px;">

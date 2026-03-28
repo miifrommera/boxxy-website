@@ -21,8 +21,14 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-end">
-                <div class="navbar-item">
+            <div class="navbar-end" style="gap: 1rem; align-items: center; display: flex;">
+                <div class="navbar-item" style="padding: 0;">
+                    <a class="boxy-releases-button" href="https://github.com/miifrommera/boxxy/releases" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <span>Releases</span>
+                    </a>
+                </div>
+                <div class="navbar-item" style="padding: 0;">
                     <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         <span>Star</span>
@@ -59,8 +65,33 @@
             <main class="column is-9">
                 <div class="content content-area">
                     
-                        <h1 id="use-cases">Use Cases</h1>
-<p>This page is not ready yet!</p>
+                        <h1 id="use-cases"><a class="zola-anchor" href="#use-cases" aria-label="Anchor link for: use-cases">🔗</a>Use Cases</h1>
+<p>Boxxy is built to handle everything from daily terminal tasks to complex Linux system administration. Think of it as your ultimate Linuxbox assistant. Here are five ways Boxxy can supercharge your workflow:</p>
+<h3 id="1-fixing-broken-dependencies"><a class="zola-anchor" href="#1-fixing-broken-dependencies" aria-label="Anchor link for: 1-fixing-broken-dependencies">🔗</a>1. Fixing Broken Dependencies</h3>
+<ul>
+<li><strong>The Scenario:</strong> You try to install a package with <code>apt</code> or <code>dnf</code>, but it fails due to a nightmare of conflicting dependencies or missing GPG keys.</li>
+<li><strong>The Boxxy Way:</strong> Instead of hunting through StackOverflow, press <code>Control + /</code> and type "fix this." Boxxy automatically reads the failure from your terminal buffer, uses its Toolbox to check your package manager's state, and proposes the exact commands needed to resolve the conflicts or import the missing keys.</li>
+</ul>
+<h3 id="2-complex-system-configuration"><a class="zola-anchor" href="#2-complex-system-configuration" aria-label="Anchor link for: 2-complex-system-configuration">🔗</a>2. Complex System Configuration</h3>
+<ul>
+<li><strong>The Scenario:</strong> You need to configure a new Nginx site with SSL, set up a complicated <code>systemd</code> service, or tweak your firewall rules.</li>
+<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and ask: "Help me set up an Nginx site for example.com with SSL." Boxxy checks your OS version, verifies if Nginx is installed, proposes the necessary configuration file writes in <code>/etc/nginx</code>, and guides you through the SSL generation—all while you simply click "Approve" for each step.</li>
+</ul>
+<h3 id="3-system-cleanup-maintenance"><a class="zola-anchor" href="#3-system-cleanup-maintenance" aria-label="Anchor link for: 3-system-cleanup-maintenance">🔗</a>3. System Cleanup &amp; Maintenance</h3>
+<ul>
+<li><strong>The Scenario:</strong> Your root partition is at 99% capacity and you have no idea where the space went.</li>
+<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and type: "My disk is full, help me clean it up safely." Because Boxxy can execute host-level commands, it runs <code>du</code> or <code>ncdu</code> in the background, analyzes the largest directories, and safely proposes the deletion of old Docker images, stale package caches, or orphaned logs.</li>
+</ul>
+<h3 id="4-interactive-scripting-with-bookmarks"><a class="zola-anchor" href="#4-interactive-scripting-with-bookmarks" aria-label="Anchor link for: 4-interactive-scripting-with-bookmarks">🔗</a>4. Interactive Scripting with Bookmarks</h3>
+<ul>
+<li><strong>The Scenario:</strong> You have a common deployment or cleanup script you run frequently, but it requires different parameters each time.</li>
+<li><strong>The Boxxy Way:</strong> Save the script as a <strong>Bookmark</strong> using <code>{{{project_name}}}</code> variables. When you run it from the Command Palette, Boxxy natively prompts you for the dynamic inputs, executes the script, and its agent monitors the output to ensure everything ran successfully.</li>
+</ul>
+<h3 id="5-context-aware-log-analysis"><a class="zola-anchor" href="#5-context-aware-log-analysis" aria-label="Anchor link for: 5-context-aware-log-analysis">🔗</a>5. Context-Aware Log Analysis</h3>
+<ul>
+<li><strong>The Scenario:</strong> You're tailing <code>journalctl</code> or a production log file and spot a recurring system error that makes no sense.</li>
+<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and ask: "What does this kernel panic mean?" Boxxy analyzes the surrounding log context in your terminal buffer, looks up documentation using its Web Search tool, and explains the root cause without you ever leaving the terminal.</li>
+</ul>
 
                     
                     

@@ -21,8 +21,14 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-end">
-                <div class="navbar-item">
+            <div class="navbar-end" style="gap: 1rem; align-items: center; display: flex;">
+                <div class="navbar-item" style="padding: 0;">
+                    <a class="boxy-releases-button" href="https://github.com/miifrommera/boxxy/releases" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <span>Releases</span>
+                    </a>
+                </div>
+                <div class="navbar-item" style="padding: 0;">
                     <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         <span>Star</span>
@@ -59,16 +65,16 @@
             <main class="column is-9">
                 <div class="content content-area">
                     
-                        <h1 id="getting-started">Getting Started</h1>
+                        <h1 id="getting-started"><a class="zola-anchor" href="#getting-started" aria-label="Anchor link for: getting-started">🔗</a>Getting Started</h1>
 <p>Boxxy is an agentic terminal. You can certainly use it without the AI features...
 <br />but then again, where's the fun in that? 😅</p>
 <p>Press <code>Control + Shift + p</code> to open the Command Palette and start exploring!</p>
 <hr />
-<h2 id="shell-integration">Shell Integration</h2>
+<h2 id="shell-integration"><a class="zola-anchor" href="#shell-integration" aria-label="Anchor link for: shell-integration">🔗</a>Shell Integration</h2>
 <p>Boxxy respects your environment. It relies on your existing shell and avoids injecting features to modify it. For the best experience, it is <strong>strongly</strong> recommended to use a modern, Rust-based shell like <a rel="external" href="https://github.com/fish-shell/fish-shell">Fish</a>.</p>
 <p>To enable terminal hyperlinks =(OSC 8)=, ensure that CLI tools like <code>ls</code> or <code>eza</code> are configured to use the <code>--hyperlink=auto</code> flag.</p>
 <hr />
-<h2 id="model-selection">Model Selection</h2>
+<h2 id="model-selection"><a class="zola-anchor" href="#model-selection" aria-label="Anchor link for: model-selection">🔗</a>Model Selection</h2>
 <p>Navigate to =Preferences= -&gt; =APIs= and enter the connection strings for your preferred LLM providers. Then, open =Model Selection= to assign specific models to Boxxy's core functions:</p>
 <ul>
 <li><code>AI Chat:</code> Used exclusively for the AI Chat in the sidebar. This model is completely stateless and separate from the rest of the application's UI and Database.</li>
@@ -77,30 +83,43 @@
 </ul>
 <p><strong>Pro Tip:</strong> Press <code>Shift + Control + p</code> and type =Models= to quickly jump to the =Model Selection= menu. Experiment with different models until you find the perfect balance of speed and intelligence.</p>
 <hr />
-<h2 id="boxxyclaw">BoxxyClaw</h2>
-<p>You can toggle =BoxxyClaw= using the Claw icon located in the Headerbar. This setting is managed per-window, but you can configure an option in Preferences to always start new windows with Claw enabled.</p>
-<p>Claw operates in two distinct modes:</p>
+<h2 id="boxxyclaw"><a class="zola-anchor" href="#boxxyclaw" aria-label="Anchor link for: boxxyclaw">🔗</a>BoxxyClaw</h2>
+<p>Press <code>Control + /</code> and send your first message to activate =BoxxyClaw=. This setting is managed per-terminal pane, but you can configure an option in Preferences to always start new terminals with Claw enabled.</p>
+<p>Claw operates in two distinct modes; you can switch modes directly from the =ClawMsgBar=.</p>
 <ul>
-<li><code>Proactive:</code> Boxxy will attempt to assist immediately when a terminal error occurs or when a task fails to complete successfully. This is incredibly useful for troubleshooting multi-step workflows.</li>
-<li><code>Lazy:</code> When an error occurs, Claw will wait and offer a prompt to look for a solution. The Claw Indicator will become visible with a 5-second cooldown, giving you the choice to request help.</li>
+<li><strong>Proactive:</strong> Boxxy will attempt to assist immediately when a terminal error occurs or when a task fails to complete successfully. This is incredibly useful for troubleshooting multi-step workflows.</li>
+<li><strong>Lazy:</strong> When an error occurs, Claw will wait and offer a prompt to look for a solution. The Claw Indicator will become visible with a 5-second cooldown, giving you the choice to request help.</li>
 </ul>
-<p>Press <code>Control + /</code> to message BoxxyClaw.</p>
+<p>You can also use the Message Bar to paste large chunks of text or even <strong>images</strong> directly from your clipboard to provide extra context to the agent!</p>
 <hr />
-<h2 id="bookmarks">Bookmarks</h2>
+<h2 id="bookmarks"><a class="zola-anchor" href="#bookmarks" aria-label="Anchor link for: bookmarks">🔗</a>Bookmarks</h2>
 <p>Open =Bookmarks= from the =Command Palette=. Here, you can create and save =Python= and =Shell= scripts. Boxxy automatically registers your saved bookmarks as quick-actions in the =Command Palette= for lightning-fast execution.</p>
 <p>Need dynamic inputs? Define runtime variables using the <code>{{{my_var}}}</code> syntax. Boxxy will prompt you to fill them out right when you invoke the script.</p>
 <p>All your scripts are safely stored locally at <code>config/boxxy-terminal/bookmarks</code>.</p>
+<h2 id="session-resume"><a class="zola-anchor" href="#session-resume" aria-label="Anchor link for: session-resume">🔗</a>Session Resume</h2>
+<p>Never lose your context again. Boxxy automatically tracks your active terminal sessions and allows you to resume any of your <strong>last 10 sessions</strong> in any terminal pane.</p>
+<p>When you resume a session, Boxxy restores:</p>
+<ul>
+<li>Your full command history and AI conversation history.</li>
+<li>The exact agent identity you were working with.</li>
+<li>Your last known working directory (CWD).</li>
+</ul>
+<p>To resume a session, press <code>Control + /</code> to open the <strong>Message Bar</strong> and type <code>/resume</code>. Boxxy will present your recent sessions, making it easy to pick up exactly where you left off after a restart or a lunch break.</p>
 <hr />
-<h2 id="agent-skills">Agent Skills</h2>
+<h2 id="agent-skills"><a class="zola-anchor" href="#agent-skills" aria-label="Anchor link for: agent-skills">🔗</a>Agent Skills</h2>
 <p>From =Preferences=, open the =config folder= and navigate to <code>boxxyclaw/skills</code>. Boxxy supports standard <a rel="external" href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Agentic Skills</a> (and a dedicated Boxxy Skills marketplace is planned!).</p>
 <p>Be sure to add your specific system specifications to the default "linux-system" skill so Boxxy understands your environment perfectly.</p>
 <hr />
-<h2 id="memories">Memories</h2>
+<h2 id="memories"><a class="zola-anchor" href="#memories" aria-label="Anchor link for: memories">🔗</a>Memories</h2>
 <p>Boxxy is a self-improving system driven by =Memories=. Tell BoxxyClaw something like ='My favorite editor is micro'=, and Boxxy will remember your preference for next time!</p>
 <p>While the core functionality is present, Boxxy is currently in =PREVIEW=. Because there isn't a firm migration strategy yet, your short-term memories might be wiped during application updates.</p>
 <p>However, your =Long Term Memory= will survive updates! You can manually view and edit these persistent facts in <code>.config/boxxy-terminal/boxxyclaw/MEMORY.md</code>.</p>
 <hr />
-<h2 id="other-tweaks">Other Tweaks</h2>
+<h2 id="token-consumption"><a class="zola-anchor" href="#token-consumption" aria-label="Anchor link for: token-consumption">🔗</a>Token Consumption</h2>
+<p>Boxxy is nor context-cheap! To perform at its best, it simultaneously processes a comprehensive set of data: the core toolbox, your active skills, relevant memories, and a snapshot of the terminal buffer.</p>
+<p>You can monitor real-time usage via the =ClawSidebar=. However, modern flagship models (like Gemini, Claude, and GPT) utilize advanced <strong>Context Caching</strong>. This typically reduces the actual billable tokens by up to 80-90% for subsequent requests in the same session. To inspect the exact payload Boxxy is broadcasting, you can <a href="https://boxxy.dev/development/#context">enable debug logging</a>.</p>
+<hr />
+<h2 id="other-tweaks"><a class="zola-anchor" href="#other-tweaks" aria-label="Anchor link for: other-tweaks">🔗</a>Other Tweaks</h2>
 <p>Depending on your distribution, you may need to raise your system's <code>inotify</code> limits. You can check your current values with:</p>
 <pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">cat</span><span style="color: #A6E3A1;"> /proc/sys/fs/inotify/max_user_instances</span></span>
 <span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">cat</span><span style="color: #A6E3A1;"> /proc/sys/fs/inotify/max_user_watches</span></span></code></pre>
