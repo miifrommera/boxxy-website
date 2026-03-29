@@ -41,11 +41,17 @@ Claw operates in two distinct modes; you can switch modes directly from the =Cla
 - **Proactive:** Boxxy will attempt to assist immediately when a terminal error occurs or when a task fails to complete successfully. This is incredibly useful for troubleshooting multi-step workflows.
 - **Lazy:** When an error occurs, Claw will wait and offer a prompt to look for a solution. The Claw Indicator will become visible with a 5-second cooldown, giving you the choice to request help.
 
-You can also use the Message Bar to paste large chunks of text or even **images** directly from your clipboard to provide extra context to the agent!
-
- 
+You can also use the Message Bar to paste large chunks of text or even **images** directly from your clipboard to provide extra context to the agent! 
 
 ---
+
+## Reminders & Scheduled Tasks
+
+Boxxy agents understand when you ask them to **remind you of something!** For example, you can ask an agent "Remind me to take my dog out in 10 minutes", and the agent will send you a notification. You can set as many reminders as you like, and at any time you can ask an agent to list them.
+
+You can also set scheduled tasks — for example, "Please clean up my PC in 20 minutes". In this case, Boxxy will present an approval widget before executing.
+
+**Note:** Tasks and Reminders are scoped per agent. Closing an agent will automatically cancel its pending reminders and scheduled tasks.
 
 ## Bookmarks
 
