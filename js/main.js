@@ -18,28 +18,32 @@ fetch('https://api.github.com/repos/miifrommera/boxxy')
 
 // Copy to Clipboard Functionality
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Handle the main installation copy button
-    const copyBtn = document.getElementById('copy-button');
-    if (copyBtn) {
-        copyBtn.addEventListener('click', function() {
-            const codeText = document.getElementById('install-command').innerText;
-            const btn = document.getElementById('copy-button');
-            const copyIcon = document.getElementById('copy-icon');
-            const checkIcon = document.getElementById('check-icon');
+    // 1. Handle the main installation copy buttons
+    const setupCopyButton = (btnId, commandId, copyIconId, checkIconId) => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+            btn.addEventListener('click', function() {
+                const codeText = document.getElementById(commandId).innerText;
+                const copyIcon = document.getElementById(copyIconId);
+                const checkIcon = document.getElementById(checkIconId);
 
-            navigator.clipboard.writeText(codeText).then(() => {
-                copyIcon.style.display = 'none';
-                checkIcon.style.display = 'block';
-                btn.style.backgroundColor = '#a6e3a1'; // Catppuccin Green
-                
-                setTimeout(() => {
-                    copyIcon.style.display = 'block';
-                    checkIcon.style.display = 'none';
-                    btn.style.backgroundColor = '#313244';
-                }, 2000);
+                navigator.clipboard.writeText(codeText).then(() => {
+                    copyIcon.style.display = 'none';
+                    checkIcon.style.display = 'block';
+                    btn.style.backgroundColor = '#a6e3a1'; // Catppuccin Green
+                    
+                    setTimeout(() => {
+                        copyIcon.style.display = 'block';
+                        checkIcon.style.display = 'none';
+                        btn.style.backgroundColor = '#313244';
+                    }, 2000);
+                });
             });
-        });
-    }
+        }
+    };
+
+    setupCopyButton('copy-button', 'install-command', 'copy-icon', 'check-icon');
+    setupCopyButton('flatpak-copy-button', 'flatpak-install-command', 'flatpak-copy-icon', 'flatpak-check-icon');
 
     // 2. Add dynamic copy buttons to all <pre> blocks in content areas
     const contentPres = document.querySelectorAll('.content-area pre');
