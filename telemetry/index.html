@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemetry Dashboard - Boxxy Terminal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/dev.boxxy.BoxxyTerminal.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="navbar is-dark">
+        <div class="container">
+            <div class="navbar-brand">
+                <div class="navbar-item">
+                    <a class="boxy-brand-button" href="/">
+                        <strong>Boxxy Terminal</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-end" style="gap: 1rem; align-items: center; display: flex;">
+                <div class="navbar-item" style="padding: 0;">
+                    <a class="boxy-releases-button" href="https://github.com/miifrommera/boxxy/releases" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <span>Releases</span>
+                    </a>
+                </div>
+                <div class="navbar-item" style="padding: 0;">
+                    <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span>Star</span>
+                        <span class="star-count" id="github-stars">...</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <!-- Sidebar Navigation -->
+            <aside class="column is-3">
+                <div class="sidebar">
+                    <p class="sidebar-title">Getting Started</p>
+                    <ul class="menu-list mb-5">
+                        <li><a href="/getting-started">Getting Started</a></li>
+                        <li><a href="/how-it-works">How It Works</a></li>
+                        <li><a href="/development">Development</a></li>
+                    </ul>
+
+                    <p class="sidebar-title">What Boxxy Can Do</p>
+                    <ul class="menu-list mb-5">
+                        <li><a href="/features">Features</a></li>
+                        <li><a href="/use-cases">Use Cases</a></li>
+                    </ul>
+
+                    <p class="sidebar-title">Community</p>
+                    <ul class="menu-list">
+                        <li><a href="/telemetry" class="is-active">Live Telemetry</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="column is-9">
+                <h1 class="title is-2 has-text-centered fancy-title mb-6">Live <span class="gradient-text">Telemetry</span></h1>
+
+                <div id="loading-state" class="has-text-centered my-6 py-6">
+                    <p class="subtitle is-4" style="color: #a6adc8; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">Loading Global Stats...</p>
+                    <style>
+                        @keyframes pulse {
+                            0%, 100% { opacity: 1; }
+                            50% { opacity: .5; }
+                        }
+                    </style>
+                </div>
+
+                <div id="dashboard-content" style="display: none;">
+                    <div class="columns is-multiline is-centered">
+                        <!-- Hero Stats -->
+                        <div class="column is-6">
+                            <div class="fancy-box p-5 has-text-centered" style="height: 100%;">
+                                <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Total AI Tokens</h3>
+                                <p id="total-tokens" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #89dceb; font-weight: 700;">-</p>
+                            </div>
+                        </div>
+                        
+                        <div class="column is-6">
+                            <div class="fancy-box p-5 has-text-centered" style="height: 100%; border-color: #cba6f7; box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7, 3px 3px 0 #cba6f7, 4px 4px 0 #cba6f7, 5px 5px 0 #cba6f7, 6px 6px 0 #cba6f7;">
+                                <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Daily Developers</h3>
+                                <p id="current-dau" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #cba6f7; font-weight: 700;">-</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tool Usage Table -->
+                        <div class="column is-12 mt-5">
+                            <div class="content-area">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Most Popular Tools</h3>
+                                <div id="tools-container">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- OS and Shell Usage -->
+                        <div class="column is-6 mt-5">
+                            <div class="content-area" style="height: 100%;">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">OS Usage</h3>
+                                <ul id="os-container" style="list-style: none; margin: 0; padding: 0;">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="column is-6 mt-5">
+                            <div class="content-area" style="height: 100%;">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Shell Usage</h3>
+                                <ul id="shell-container" style="list-style: none; margin: 0; padding: 0;">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<!-- Supabase JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const supabaseUrl = 'https://qfwhesnmixgmczkdnvsu.supabase.co';
+        const supabaseAnonKey = 'sb_publishable_Z-SbIil88PSj3ri24CM7aw_8vzsCFie';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+        try {
+            const [statsRes, toolsRes, osRes, shellRes] = await Promise.all([
+                supabase.from('public_stats_daily').select('*').order('day', { ascending: false }).limit(30),
+                supabase.from('tool_usage_stats').select('*').limit(10),
+                supabase.from('os_usage_stats').select('*'),
+                supabase.from('shell_usage_stats').select('*')
+            ]);
+
+            const daily = statsRes.data || [];
+            const tools = toolsRes.data || [];
+            const osData = osRes.data || [];
+            const shellData = shellRes.data || [];
+
+            const totalTokens = daily.reduce((acc, curr) => acc + (Number(curr.total_tokens) || 0), 0);
+            const currentDau = daily[0]?.dau || 0;
+
+            document.getElementById('total-tokens').innerText = totalTokens.toLocaleString();
+            document.getElementById('current-dau').innerText = currentDau.toLocaleString();
+
+            const toolsContainer = document.getElementById('tools-container');
+            toolsContainer.innerHTML = '';
+            
+            if (tools.length === 0) {
+                toolsContainer.innerHTML = '<p class="has-text-centered" style="color: #a6adc8;">No tool usage data available yet.</p>';
+            } else {
+                tools.forEach(tool => {
+                    toolsContainer.innerHTML += `
+                        <div class="is-flex is-justify-content-space-between is-align-items-center mb-3 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
+                            <code style="color: #94e2d5 !important; background: transparent !important; border: none !important; font-size: 1rem !important; padding: 0 !important;">${tool.tool_name}</code>
+                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #bac2de; font-weight: 600;">${tool.usage_count.toLocaleString()} uses</span>
+                        </div>
+                    `;
+                });
+            }
+
+            const osContainer = document.getElementById('os-container');
+            osContainer.innerHTML = '';
+            if (osData.length === 0) {
+                osContainer.innerHTML = '<li class="has-text-centered" style="color: #a6adc8;">No OS data available yet.</li>';
+            } else {
+                osData.forEach(os => {
+                    osContainer.innerHTML += `
+                        <li class="is-flex is-justify-content-space-between is-align-items-center mb-2 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
+                            <span style="color: #cdd6f4; font-weight: 700;">${os.os_name}</span>
+                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #f5e0dc;">${os.user_count.toLocaleString()} devs</span>
+                        </li>
+                    `;
+                });
+            }
+
+            const shellContainer = document.getElementById('shell-container');
+            shellContainer.innerHTML = '';
+            if (shellData.length === 0) {
+                shellContainer.innerHTML = '<li class="has-text-centered" style="color: #a6adc8;">No shell data available yet.</li>';
+            } else {
+                shellData.forEach(sh => {
+                    shellContainer.innerHTML += `
+                        <li class="is-flex is-justify-content-space-between is-align-items-center mb-2 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
+                            <span style="color: #cdd6f4; font-weight: 700;">${sh.shell_name}</span>
+                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #f5e0dc;">${sh.user_count.toLocaleString()} devs</span>
+                        </li>
+                    `;
+                });
+            }
+
+            // Show dashboard, hide loading
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('dashboard-content').style.display = 'block';
+
+        } catch (err) {
+            console.error("Failed to fetch telemetry data:", err);
+            document.getElementById('loading-state').innerHTML = '<p style="color: #f38ba8;">Failed to load telemetry data. Please try again later.</p>';
+        }
+    });
+</script>
+
+
+    <footer class="footer">
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>
