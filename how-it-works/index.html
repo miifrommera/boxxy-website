@@ -100,6 +100,20 @@ essentially a dedicated session from your chosen =LLM Model=.</p>
 </ol>
 <p>This ensures the agent gets the precise context it needs without unnecessarily flooding the model with thousands of lines of irrelevant history.</p>
 <hr />
+<h2 id="resume-session"><a class="zola-anchor" href="#resume-session" aria-label="Anchor link for: resume-session">🔗</a>Resume Session</h2>
+<p>Boxxy supports a stateless =Resume Session= model that allows you to restore any of your last 10 active sessions—or any session you've explicitly pinned—into any terminal pane.</p>
+<h3 id="stateless-resumption"><a class="zola-anchor" href="#stateless-resumption" aria-label="Anchor link for: stateless-resumption">🔗</a>Stateless Resumption</h3>
+<p>Unlike other AI tools that rely on provider-side "Threads," Boxxy stores your entire conversation history locally in its SQLite database. When you use <code>/resume</code>:</p>
+<ul>
+<li><strong>Rehydration:</strong> Boxxy loads the previous messages and "cleans" them of transient data (like old terminal snapshots).</li>
+<li><strong>Visual Logs:</strong> Your entire sidebar history—diagnoses, proposed actions, and tool results—is re-rendered instantly.</li>
+<li><strong>Environment Sync:</strong> Boxxy attempts to restore the terminal's =Working Directory= and re-activates any pending scheduled tasks.</li>
+</ul>
+<h3 id="switching-brains-on-the-fly"><a class="zola-anchor" href="#switching-brains-on-the-fly" aria-label="Anchor link for: switching-brains-on-the-fly">🔗</a>Switching Brains on the Fly</h3>
+<p>Because Boxxy's resumption is stateless, you can start a session with one model (e.g., "Gemini 3.1" ) and resume it with another (e.g., "Claude 4.6"). The new model simply reads the previous exchange and continues as if it were there all along.</p>
+<h3 id="persistent-analytics"><a class="zola-anchor" href="#persistent-analytics" aria-label="Anchor link for: persistent-analytics">🔗</a>Persistent Analytics</h3>
+<p>Resuming a session also restores its =Cumulative Context Analytics=. Your sidebar will accurately reflect the total token spend for the entire life of that session, even if you've switched model providers or restarted the application.</p>
+<hr />
 <h2 id="toolbox"><a class="zola-anchor" href="#toolbox" aria-label="Anchor link for: toolbox">🔗</a>Toolbox</h2>
 <p>Think of the <strong>Toolbox</strong> as the agent's set of "superpowers." Instead of the AI simply guessing and typing commands into your terminal, it uses a library of highly reliable, structured tools to interact with your computer.</p>
 <p>These tools are grouped into specialized categories:</p>

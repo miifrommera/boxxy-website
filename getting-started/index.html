@@ -100,15 +100,10 @@
 <p>Open =Bookmarks= from the =Command Palette=. Here, you can create and save =Python= and =Shell= scripts. Boxxy automatically registers your saved bookmarks as quick-actions in the =Command Palette= for lightning-fast execution.</p>
 <p>Need dynamic inputs? Define runtime variables using the <code>{{{my_var}}}</code> syntax. Boxxy will prompt you to fill them out right when you invoke the script.</p>
 <p>All your scripts are safely stored locally at <code>config/boxxy-terminal/bookmarks</code>.</p>
-<h2 id="session-resume"><a class="zola-anchor" href="#session-resume" aria-label="Anchor link for: session-resume">🔗</a>Session Resume</h2>
-<p>Never lose your context again. Boxxy automatically tracks your active terminal sessions and allows you to resume any of your <strong>last 10 sessions</strong> in any terminal pane.</p>
-<p>When you resume a session, Boxxy restores:</p>
-<ul>
-<li>Your full command history and AI conversation history.</li>
-<li>The exact agent identity you were working with.</li>
-<li>Your last known working directory (CWD).</li>
-</ul>
-<p>To resume a session, press <code>Control + /</code> to open the <strong>Message Bar</strong> and type <code>/resume</code>. Boxxy will present your recent sessions, making it easy to pick up exactly where you left off after a restart or a lunch break.</p>
+<h2 id="picking-up-where-you-left-off"><a class="zola-anchor" href="#picking-up-where-you-left-off" aria-label="Anchor link for: picking-up-where-you-left-off">🔗</a>Picking Up Where You Left Off</h2>
+<p>Never lose your context again. You can resume any of your <strong>last 10 sessions</strong> in any terminal pane by pressing <code>Control + /</code> and typing <code>/resume</code>. Boxxy will present your recent history, making it easy to pick up exactly where you left off.</p>
+<p>If you want to keep a specific session forever, you can =Pin it= using the pin toggle in the message bar. Pinned sessions are always displayed at the top of your list and are never automatically deleted, no matter how many new sessions you start!</p>
+<p>See more at <a href="https://boxxy.dev/how-it-works/#resume-session">How It Works</a>.</p>
 <hr />
 <h2 id="agent-skills"><a class="zola-anchor" href="#agent-skills" aria-label="Anchor link for: agent-skills">🔗</a>Agent Skills</h2>
 <p>From =Preferences=, open the =config folder= and navigate to <code>boxxyclaw/skills</code>. Boxxy supports standard <a rel="external" href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Agentic Skills</a> (and a dedicated Boxxy Skills marketplace is planned!).</p>
