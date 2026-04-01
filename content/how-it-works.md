@@ -56,6 +56,24 @@ This ensures the agent gets the precise context it needs without unnecessarily f
 
 ---
 
+## Resume Session 
+
+Boxxy supports a stateless =Resume Session= model that allows you to restore any of your last 10 active sessions—or any session you've explicitly pinned—into any terminal pane.
+
+### Stateless Resumption
+Unlike other AI tools that rely on provider-side "Threads," Boxxy stores your entire conversation history locally in its SQLite database. When you use `/resume`:
+- **Rehydration:** Boxxy loads the previous messages and "cleans" them of transient data (like old terminal snapshots).
+- **Visual Logs:** Your entire sidebar history—diagnoses, proposed actions, and tool results—is re-rendered instantly.
+- **Environment Sync:** Boxxy attempts to restore the terminal's =Working Directory= and re-activates any pending scheduled tasks.
+
+### Switching Brains on the Fly
+Because Boxxy's resumption is stateless, you can start a session with one model (e.g., "Gemini 3.1" ) and resume it with another (e.g., "Claude 4.6"). The new model simply reads the previous exchange and continues as if it were there all along.
+
+### Persistent Analytics
+Resuming a session also restores its =Cumulative Context Analytics=. Your sidebar will accurately reflect the total token spend for the entire life of that session, even if you've switched model providers or restarted the application.
+
+---
+
 ## Toolbox
 
 Think of the **Toolbox** as the agent's set of "superpowers." Instead of the AI simply guessing and typing commands into your terminal, it uses a library of highly reliable, structured tools to interact with your computer.

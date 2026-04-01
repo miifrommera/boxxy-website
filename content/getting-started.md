@@ -61,16 +61,13 @@ Need dynamic inputs? Define runtime variables using the `{{{my_var}}}` syntax. B
 
 All your scripts are safely stored locally at `config/boxxy-terminal/bookmarks`.
 
-## Session Resume
+## Picking Up Where You Left Off
 
-Never lose your context again. Boxxy automatically tracks your active terminal sessions and allows you to resume any of your **last 10 sessions** in any terminal pane.
+Never lose your context again. You can resume any of your **last 10 sessions** in any terminal pane by pressing `Control + /` and typing `/resume`. Boxxy will present your recent history, making it easy to pick up exactly where you left off.
 
-When you resume a session, Boxxy restores:
-- Your full command history and AI conversation history.
-- The exact agent identity you were working with.
-- Your last known working directory (CWD).
+If you want to keep a specific session forever, you can =Pin it= using the pin toggle in the message bar. Pinned sessions are always displayed at the top of your list and are never automatically deleted, no matter how many new sessions you start! 
 
-To resume a session, press `Control + /` to open the **Message Bar** and type `/resume`. Boxxy will present your recent sessions, making it easy to pick up exactly where you left off after a restart or a lunch break.
+See more at [How It Works](@/how-it-works.md#resume-session).
 
 --- 
 
