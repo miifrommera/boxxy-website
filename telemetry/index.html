@@ -65,7 +65,7 @@
                 <div id="dashboard-content" style="display: none;">
                     <div class="columns is-multiline is-centered">
                         <!-- Hero Stats -->
-                        <div class="column is-6">
+                        <div class="column is-4">
                             <div class="fancy-box p-5 has-text-centered" style="height: 100%;">
                                 <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Weekly AI Tokens</h3>
                                 <p id="total-tokens-week" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #89dceb; font-weight: 700;">-</p>
@@ -73,10 +73,19 @@
                             </div>
                         </div>
 
-                        <div class="column is-6">
+                        <div class="column is-4">
+                            <div class="fancy-box p-5 has-text-centered" style="height: 100%; border-color: #f9e2af; box-shadow: 1px 1px 0 #f9e2af, 2px 2px 0 #f9e2af, 3px 3px 0 #f9e2af, 4px 4px 0 #f9e2af, 5px 5px 0 #f9e2af, 6px 6px 0 #f9e2af;">
+                                <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">ClAW Adoption</h3>
+                                <p id="claw-adoption" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #f9e2af; font-weight: 700;">-%</p>
+                                <p style="color: #6c7086; font-size: 0.8rem; font-weight: 600;">of app launches</p>
+                            </div>
+                        </div>
+
+                        <div class="column is-4">
                             <div class="fancy-box p-5 has-text-centered" style="height: 100%; border-color: #cba6f7; box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7, 3px 3px 0 #cba6f7, 4px 4px 0 #cba6f7, 5px 5px 0 #cba6f7, 6px 6px 0 #cba6f7;">
                                 <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Daily Developers</h3>
                                 <p id="current-dau" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #cba6f7; font-weight: 700;">-</p>
+                                <p style="color: #6c7086; font-size: 0.8rem; font-weight: 600;">Active Today</p>
                             </div>
                         </div>
 
@@ -90,11 +99,11 @@
                             </div>
                         </div>
 
-                        <!-- OS and Shell Usage -->
+                        <!-- ClAW Providers and Shell Usage -->
                         <div class="column is-6 mt-5">
                             <div class="content-area" style="height: 100%;">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">OS Usage</h3>
-                                <ul id="os-container" style="list-style: none; margin: 0; padding: 0;">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">ClAW Providers</h3>
+                                <ul id="providers-container" style="list-style: none; margin: 0; padding: 0;">
                                     <!-- Populated by JS -->
                                 </ul>
                             </div>
@@ -104,6 +113,16 @@
                             <div class="content-area" style="height: 100%;">
                                 <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Shell Usage</h3>
                                 <ul id="shell-container" style="list-style: none; margin: 0; padding: 0;">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- OS Usage -->
+                        <div class="column is-12 mt-5">
+                            <div class="content-area" style="height: 100%;">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">OS Usage</h3>
+                                <ul id="os-container" style="list-style: none; margin: 0; padding: 0;">
                                     <!-- Populated by JS -->
                                 </ul>
                             </div>
@@ -125,17 +144,21 @@
         const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
 
         try {
-            const [statsRes, toolsRes, osRes, shellRes] = await Promise.all([
+            const [statsRes, toolsRes, osRes, shellRes, providerRes, adoptionRes] = await Promise.all([
                 supabase.from('public_stats_daily').select('*').order('day', { ascending: false }).limit(30),
                 supabase.from('tool_usage_stats_7d').select('*').limit(10),
                 supabase.from('os_usage_stats_7d').select('*'),
-                supabase.from('shell_usage_stats_7d').select('*')
+                supabase.from('shell_usage_stats_7d').select('*'),
+                supabase.from('claw_provider_stats_7d').select('*'),
+                supabase.from('claw_usage_per_launch_stats_7d').select('*').limit(1)
             ]);
 
             const daily = statsRes.data || [];
             const tools = toolsRes.data || [];
             const osData = osRes.data || [];
             const shellData = shellRes.data || [];
+            const providers = providerRes.data || [];
+            const adoption = adoptionRes.data && adoptionRes.data.length > 0 ? adoptionRes.data[0] : null;
 
             // Calculate totals and date range
             const last7Days = daily.slice(0, 7);
@@ -157,6 +180,10 @@
             document.getElementById('total-tokens-week').innerText = tokensLastWeek.toLocaleString();
             document.getElementById('total-tokens-alltime').innerText = tokensAllTime.toLocaleString();
             document.getElementById('current-dau').innerText = currentDau.toLocaleString();
+            
+            if (adoption && adoption.adoption_rate_percent !== null) {
+                document.getElementById('claw-adoption').innerText = `${adoption.adoption_rate_percent}%`;
+            }
 
             const toolsContainer = document.getElementById('tools-container');
             toolsContainer.innerHTML = '';
@@ -170,6 +197,34 @@
                             <code style="color: #94e2d5 !important; background: transparent !important; border: none !important; font-size: 1rem !important; padding: 0 !important;">${tool.tool_name}</code>
                             <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #bac2de; font-weight: 600;">${tool.usage_count.toLocaleString()} uses</span>
                         </div>
+                    `;
+                });
+            }
+
+            const providersContainer = document.getElementById('providers-container');
+            providersContainer.innerHTML = '';
+            if (providers.length === 0) {
+                providersContainer.innerHTML = '<li class="has-text-centered" style="color: #a6adc8;">No provider data available yet.</li>';
+            } else {
+                // Calculate the sum of users to get the percentage denominator
+                const totalProviderUsers = providers.reduce((acc, p) => acc + p.user_count, 0);
+
+                providers.forEach(p => {
+                    // Capitalize (e.g., "openai" -> "OpenAI")
+                    const name = p.provider_name === 'openai' ? 'OpenAI' : p.provider_name.charAt(0).toUpperCase() + p.provider_name.slice(1);
+
+                    // Calculate the percentage
+                    const percentage = totalProviderUsers > 0
+                        ? ((p.user_count / totalProviderUsers) * 100).toFixed(1)
+                        : 0;
+
+                    providersContainer.innerHTML += `
+                        <li class="is-flex is-justify-content-space-between is-align-items-center mb-2 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
+                            <span style="color: #cdd6f4; font-weight: 700;">${name}</span>
+                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #f5e0dc;">
+                                ${percentage}% <small style="color: #6c7086; margin-left: 8px; font-size: 0.8em;">(${p.user_count.toLocaleString()} devs)</small>
+                            </span>
+                        </li>
                     `;
                 });
             }
