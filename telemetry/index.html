@@ -42,33 +42,15 @@
     
 <section class="section">
     <div class="container">
-        <div class="columns">
-            <!-- Sidebar Navigation -->
-            <aside class="column is-3">
-                <div class="sidebar">
-                    <p class="sidebar-title">Getting Started</p>
-                    <ul class="menu-list mb-5">
-                        <li><a href="/getting-started">Getting Started</a></li>
-                        <li><a href="/how-it-works">How It Works</a></li>
-                        <li><a href="/development">Development</a></li>
-                    </ul>
-
-                    <p class="sidebar-title">What Boxxy Can Do</p>
-                    <ul class="menu-list mb-5">
-                        <li><a href="/features">Features</a></li>
-                        <li><a href="/use-cases">Use Cases</a></li>
-                    </ul>
-
-                    <p class="sidebar-title">Community</p>
-                    <ul class="menu-list">
-                        <li><a href="/telemetry" class="is-active">Live Telemetry</a></li>
-                    </ul>
-                </div>
-            </aside>
-
+        <div class="columns is-centered">
             <!-- Main Content Area -->
-            <main class="column is-9">
-                <h1 class="title is-2 has-text-centered fancy-title mb-6">Live <span class="gradient-text">Telemetry</span></h1>
+            <main class="column is-10">
+                <div class="has-text-centered mb-6">
+                    <h1 class="title is-1 fancy-title mb-2">Last <span class="gradient-text">7 Days</span></h1>
+                    <p class="subtitle is-4" style="color: #a6adc8; font-weight: 600;">
+                        Live Telemetry • <span id="date-range" style="color: #89b4fa; font-size: 0.9em; font-weight: 500;">Loading range...</span>
+                    </p>
+                </div>
 
                 <div id="loading-state" class="has-text-centered my-6 py-6">
                     <p class="subtitle is-4" style="color: #a6adc8; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">Loading Global Stats...</p>
@@ -85,22 +67,23 @@
                         <!-- Hero Stats -->
                         <div class="column is-6">
                             <div class="fancy-box p-5 has-text-centered" style="height: 100%;">
-                                <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Total AI Tokens</h3>
-                                <p id="total-tokens" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #89dceb; font-weight: 700;">-</p>
+                                <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Weekly AI Tokens</h3>
+                                <p id="total-tokens-week" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #89dceb; font-weight: 700;">-</p>
+                                <p style="color: #6c7086; font-size: 0.8rem; font-weight: 600;">All-time: <span id="total-tokens-alltime">-</span></p>
                             </div>
                         </div>
-                        
+
                         <div class="column is-6">
                             <div class="fancy-box p-5 has-text-centered" style="height: 100%; border-color: #cba6f7; box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7, 3px 3px 0 #cba6f7, 4px 4px 0 #cba6f7, 5px 5px 0 #cba6f7, 6px 6px 0 #cba6f7;">
                                 <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Daily Developers</h3>
                                 <p id="current-dau" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #cba6f7; font-weight: 700;">-</p>
                             </div>
                         </div>
-                        
+
                         <!-- Tool Usage Table -->
                         <div class="column is-12 mt-5">
                             <div class="content-area">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Most Popular Tools</h3>
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Tools usage</h3>
                                 <div id="tools-container">
                                     <!-- Populated by JS -->
                                 </div>
@@ -144,9 +127,9 @@
         try {
             const [statsRes, toolsRes, osRes, shellRes] = await Promise.all([
                 supabase.from('public_stats_daily').select('*').order('day', { ascending: false }).limit(30),
-                supabase.from('tool_usage_stats').select('*').limit(10),
-                supabase.from('os_usage_stats').select('*'),
-                supabase.from('shell_usage_stats').select('*')
+                supabase.from('tool_usage_stats_7d').select('*').limit(10),
+                supabase.from('os_usage_stats_7d').select('*'),
+                supabase.from('shell_usage_stats_7d').select('*')
             ]);
 
             const daily = statsRes.data || [];
@@ -154,15 +137,30 @@
             const osData = osRes.data || [];
             const shellData = shellRes.data || [];
 
-            const totalTokens = daily.reduce((acc, curr) => acc + (Number(curr.total_tokens) || 0), 0);
+            // Calculate totals and date range
+            const last7Days = daily.slice(0, 7);
+            const tokensLastWeek = last7Days.reduce((acc, curr) => acc + (Number(curr.total_tokens) || 0), 0);
+            const tokensAllTime = daily.reduce((acc, curr) => acc + (Number(curr.total_tokens) || 0), 0);
             const currentDau = daily[0]?.dau || 0;
 
-            document.getElementById('total-tokens').innerText = totalTokens.toLocaleString();
+            // Date range formatting
+            if (last7Days.length > 0) {
+                const formatDate = (dateStr) => {
+                    const date = new Date(dateStr);
+                    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                };
+                const start = formatDate(last7Days[last7Days.length - 1].day);
+                const end = formatDate(last7Days[0].day);
+                document.getElementById('date-range').innerText = `${start} - ${end}, ${new Date().getFullYear()}`;
+            }
+
+            document.getElementById('total-tokens-week').innerText = tokensLastWeek.toLocaleString();
+            document.getElementById('total-tokens-alltime').innerText = tokensAllTime.toLocaleString();
             document.getElementById('current-dau').innerText = currentDau.toLocaleString();
 
             const toolsContainer = document.getElementById('tools-container');
             toolsContainer.innerHTML = '';
-            
+
             if (tools.length === 0) {
                 toolsContainer.innerHTML = '<p class="has-text-centered" style="color: #a6adc8;">No tool usage data available yet.</p>';
             } else {
