@@ -12,6 +12,7 @@
                         <li><a href="/getting-started" class="{% if current_path == '/getting-started/' %}is-active{% endif %}">Getting Started</a></li>
                         <li><a href="/how-it-works" class="{% if current_path == '/how-it-works/' %}is-active{% endif %}">How It Works</a></li>
                         <li><a href="/development" class="{% if current_path == '/development/' %}is-active{% endif %}">Development</a></li>
+                        <li><a href="/telemetry" class="{% if current_path == '/telemetry/' %}is-active{% endif %}">Telemetry</a></li>
                     </ul>
 
                     <p class="sidebar-title">What Boxxy Can Do</p>
@@ -22,7 +23,11 @@
 
                     <p class="sidebar-title">Community</p>
                     <ul class="menu-list">
-                        <li><a href="/telemetry" class="{% if current_path == '/telemetry/' %}is-active{% endif %}">Live Telemetry</a></li>
+                        <li><a href="/releases" class="{% if current_path == '/releases/' %}is-active{% endif %}">Releases</a></li>
+                        <li><a href="/live" class="{% if current_path == '/live/' %}is-active{% endif %}" style="display: flex; align-items: center; gap: 0.5rem;">
+                            Dashboard
+                            <span style="background-color: #f38ba8; color: #11111b; font-size: 0.6rem; font-weight: 900; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">Live</span>
+                        </a></li>
                     </ul>
                 </div>
             </aside>
@@ -35,7 +40,7 @@
                     {% elif section %}
                         {{ section.content | safe }}
                     {% endif %}
-                    
+
                     <hr style="margin-top: 3rem; background-color: #313244; height: 1px;">
                     <div class="has-text-right">
                         <a href="https://github.com/miifrommera/boxxy-website/edit/main/content{{ current_path | default(value='/') | trim_end_matches(pat='/') }}.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">

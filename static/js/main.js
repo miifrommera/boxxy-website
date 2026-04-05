@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     };
 
-    const boxyBadge = document.querySelector('.boxy-badge');
+    const boxyBadge = document.querySelector('.boxxy-badge');
     if (boxyBadge) {
         boxyBadge.style.cursor = 'pointer';
         boxyBadge.addEventListener('click', () => {

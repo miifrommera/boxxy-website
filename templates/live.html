@@ -48,25 +48,15 @@
                             <div class="fancy-box p-5 has-text-centered" style="height: 100%; border-color: #cba6f7; box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7, 3px 3px 0 #cba6f7, 4px 4px 0 #cba6f7, 5px 5px 0 #cba6f7, 6px 6px 0 #cba6f7;">
                                 <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Daily Developers</h3>
                                 <p id="current-dau" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #cba6f7; font-weight: 700;">-</p>
-                                <p style="color: #6c7086; font-size: 0.8rem; font-weight: 600;">Active Today</p>
+                                <p style="color: #6c7086; font-size: 0.8rem; font-weight: 600;">All-time: <span id="total-devs-alltime">-</span></p>
                             </div>
                         </div>
 
-                        <!-- Tool Usage Table -->
-                        <div class="column is-12 mt-5">
-                            <div class="content-area">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Tools usage</h3>
-                                <div id="tools-container">
-                                    <!-- Populated by JS -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ClAW Providers and Shell Usage -->
+                        <!-- OS and Shell Usage -->
                         <div class="column is-6 mt-5">
                             <div class="content-area" style="height: 100%;">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">ClAW Providers</h3>
-                                <ul id="providers-container" style="list-style: none; margin: 0; padding: 0;">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">OS Usage</h3>
+                                <ul id="os-container" style="list-style: none; margin: 0; padding: 0;">
                                     <!-- Populated by JS -->
                                 </ul>
                             </div>
@@ -81,13 +71,32 @@
                             </div>
                         </div>
 
-                        <!-- OS Usage -->
-                        <div class="column is-12 mt-5">
+                        <!-- ClAW Providers and Package Usage -->
+                        <div class="column is-6 mt-5">
                             <div class="content-area" style="height: 100%;">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">OS Usage</h3>
-                                <ul id="os-container" style="list-style: none; margin: 0; padding: 0;">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">ClAW Providers</h3>
+                                <ul id="providers-container" style="list-style: none; margin: 0; padding: 0;">
                                     <!-- Populated by JS -->
                                 </ul>
+                            </div>
+                        </div>
+
+                        <div class="column is-6 mt-5">
+                            <div class="content-area" style="height: 100%;">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Native vs Flatpak</h3>
+                                <ul id="pkg-container" style="list-style: none; margin: 0; padding: 0;">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Tool Usage Table -->
+                        <div class="column is-12 mt-5">
+                            <div class="content-area">
+                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Tools usage</h3>
+                                <div id="tools-container">
+                                    <!-- Populated by JS -->
+                                </div>
                             </div>
                         </div>
 
@@ -107,13 +116,15 @@
         const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
 
         try {
-            const [statsRes, toolsRes, osRes, shellRes, providerRes, adoptionRes] = await Promise.all([
+            const [statsRes, toolsRes, osRes, shellRes, providerRes, adoptionRes, allTimeRes, pkgAllTimeRes] = await Promise.all([
                 supabase.from('public_stats_daily').select('*').order('day', { ascending: false }).limit(30),
                 supabase.from('tool_usage_stats_7d').select('*').limit(10),
                 supabase.from('os_usage_stats_7d').select('*'),
                 supabase.from('shell_usage_stats_7d').select('*'),
                 supabase.from('claw_provider_stats_7d').select('*'),
-                supabase.from('claw_usage_per_launch_stats_7d').select('*').limit(1)
+                supabase.from('claw_usage_per_launch_stats_7d').select('*').limit(1),
+                supabase.from('public_stats_all_time').select('*').single(),
+                supabase.from('pkg_type_usage_stats_all_time').select('*').order('user_count', { ascending: false })
             ]);
 
             const daily = statsRes.data || [];
@@ -122,12 +133,15 @@
             const shellData = shellRes.data || [];
             const providers = providerRes.data || [];
             const adoption = adoptionRes.data && adoptionRes.data.length > 0 ? adoptionRes.data[0] : null;
+            const allTimeData = allTimeRes.data || {};
+            const pkgAllTimeData = pkgAllTimeRes.data || [];
 
             // Calculate totals and date range
             const last7Days = daily.slice(0, 7);
             const tokensLastWeek = last7Days.reduce((acc, curr) => acc + (Number(curr.total_tokens) || 0), 0);
-            const tokensAllTime = daily.reduce((acc, curr) => acc + (Number(curr.total_tokens) || 0), 0);
+            const tokensAllTime = allTimeData.total_tokens || 0;
             const currentDau = daily[0]?.dau || 0;
+            const totalDevsAllTime = allTimeData.total_users || 0;
 
             // Date range formatting
             if (last7Days.length > 0) {
@@ -143,7 +157,8 @@
             document.getElementById('total-tokens-week').innerText = tokensLastWeek.toLocaleString();
             document.getElementById('total-tokens-alltime').innerText = tokensAllTime.toLocaleString();
             document.getElementById('current-dau').innerText = currentDau.toLocaleString();
-            
+            document.getElementById('total-devs-alltime').innerText = totalDevsAllTime.toLocaleString();
+
             if (adoption && adoption.adoption_rate_percent !== null) {
                 document.getElementById('claw-adoption').innerText = `${adoption.adoption_rate_percent}%`;
             }
@@ -202,6 +217,28 @@
                         <li class="is-flex is-justify-content-space-between is-align-items-center mb-2 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
                             <span style="color: #cdd6f4; font-weight: 700;">${os.os_name}</span>
                             <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #f5e0dc;">${os.user_count.toLocaleString()} devs</span>
+                        </li>
+                    `;
+                });
+            }
+
+            const pkgContainer = document.getElementById('pkg-container');
+            pkgContainer.innerHTML = '';
+            if (pkgAllTimeData.length === 0) {
+                pkgContainer.innerHTML = '<li class="has-text-centered" style="color: #a6adc8;">No package data available yet.</li>';
+            } else {
+                const totalPkgUsers = pkgAllTimeData.reduce((acc, p) => acc + p.user_count, 0);
+
+                pkgAllTimeData.forEach(p => {
+                    const name = p.pkg_type.charAt(0).toUpperCase() + p.pkg_type.slice(1);
+                    const percentage = totalPkgUsers > 0 ? ((p.user_count / totalPkgUsers) * 100).toFixed(1) : 0;
+
+                    pkgContainer.innerHTML += `
+                        <li class="is-flex is-justify-content-space-between is-align-items-center mb-2 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
+                            <span style="color: #cdd6f4; font-weight: 700;">${name}</span>
+                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #f5e0dc;">
+                                ${percentage}% <small style="color: #6c7086; margin-left: 8px; font-size: 0.8em;">(${p.user_count.toLocaleString()} devs)</small>
+                            </span>
                         </li>
                     `;
                 });
