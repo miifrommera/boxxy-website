@@ -92,7 +92,9 @@ However, your =Long Term Memory= will survive updates! You can manually view and
 
 Boxxy is nor context-cheap! To perform at its best, it simultaneously processes a comprehensive set of data: the core toolbox, your active skills, relevant memories, and a snapshot of the terminal buffer. 
 
-You can monitor real-time usage via the =ClawSidebar=. However, modern flagship models (like Gemini, Claude, and GPT) utilize advanced **Context Caching**. This typically reduces the actual billable tokens by up to 80-90% for subsequent requests in the same session. To inspect the exact payload Boxxy is broadcasting, you can [enable debug logging](@/development.md#context).
+You can monitor real-time usage via the =ClawSidebar=. However, modern flagship models (like Gemini, Claude, and GPT) utilize advanced **Context Caching**. This typically reduces the actual billable tokens by up to 80-90% for subsequent requests in the same session. 
+
+To inspect the exact payload Boxxy is broadcasting, you can run Booxy with =Context Logging Env= `BOXXY_DEBUG_CONTEXT=1`
 
 --- 
 

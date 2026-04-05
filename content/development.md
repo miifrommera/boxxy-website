@@ -59,10 +59,10 @@ flatpak-builder --user --install --force-clean build-dir flatpak/dev.boxxy.Boxxy
 
 ## Context
 
-One of the most important things to monitor is the exact context Boxxy sends to the model. You can inspect this by enabling debug logging:
+One of the most important things to monitor is the exact context Boxxy sends to the model. You can inspect this by enabling context logging:
 
 ```bash
-RUST_LOG=debug cargo run -p boxxy-app
+BOXXY_DEBUG_CONTEXT=1 cargo run -p boxxy-app
 ```
 
-**Note:** Debug-level logs are typically only available when running development builds.
+(This works in both debug and release builds, but will remain completely silent unless the variable is set to 1.)
