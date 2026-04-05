@@ -16,20 +16,20 @@
         <div class="container">
             <div class="navbar-brand">
                 <div class="navbar-item">
-                    <a class="boxy-brand-button" href="/">
+                    <a class="boxxy-brand-button" href="/">
                         <strong>Boxxy Terminal</strong>
                     </a>
                 </div>
             </div>
             <div class="navbar-end" style="gap: 1rem; align-items: center; display: flex;">
                 <div class="navbar-item" style="padding: 0;">
-                    <a class="boxy-releases-button" href="https://github.com/miifrommera/boxxy/releases" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                        <span>Releases</span>
+                    <a class="boxxy-live-button" href="/live">
+                        <span style="width: 8px; height: 8px; background-color: #f38ba8; border-radius: 50%; display: inline-block; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; border: 1.5px solid #11111b;"></span>
+                        <span>Live</span>
                     </a>
                 </div>
                 <div class="navbar-item" style="padding: 0;">
-                    <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
+                    <a class="boxxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         <span>Star</span>
                         <span class="star-count" id="github-stars">...</span>
@@ -51,6 +51,7 @@
                         <li><a href="/getting-started" class="">Getting Started</a></li>
                         <li><a href="/how-it-works" class="">How It Works</a></li>
                         <li><a href="/development" class="">Development</a></li>
+                        <li><a href="/telemetry" class="">Telemetry</a></li>
                     </ul>
 
                     <p class="sidebar-title">What Boxxy Can Do</p>
@@ -61,7 +62,11 @@
 
                     <p class="sidebar-title">Community</p>
                     <ul class="menu-list">
-                        <li><a href="/telemetry" class="">Live Telemetry</a></li>
+                        <li><a href="/releases" class="">Releases</a></li>
+                        <li><a href="/live" class="" style="display: flex; align-items: center; gap: 0.5rem;">
+                            Dashboard
+                            <span style="background-color: #f38ba8; color: #11111b; font-size: 0.6rem; font-weight: 900; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">Live</span>
+                        </a></li>
                     </ul>
                 </div>
             </aside>
@@ -99,7 +104,7 @@
 </ul>
 
                     
-                    
+
                     <hr style="margin-top: 3rem; background-color: #313244; height: 1px;">
                     <div class="has-text-right">
                         <a href="https://github.com/miifrommera/boxxy-website/edit/main/content&#x2F;use-cases.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">

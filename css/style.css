@@ -18,7 +18,7 @@ html, body {
 .navbar-item, .navbar-link {
     color: #cdd6f4 !important;
 }
-.boxy-brand-button {
+.boxxy-brand-button {
     background-color: #1e1e2e;
     border: 2px solid #a6e3a1; /* Catppuccin Green */
     border-radius: 8px;
@@ -32,11 +32,11 @@ html, body {
     align-items: center;
     text-decoration: none !important;
 }
-.boxy-brand-button:hover {
+.boxxy-brand-button:hover {
     transform: translate(0, 0);
     box-shadow: 1px 1px 0 #a6e3a1;
 }
-.boxy-github-button {
+.boxxy-github-button {
     background-color: #ffffff;
     border: 2px solid #a6e3a1; /* Catppuccin Green */
     border-radius: 8px;
@@ -53,18 +53,19 @@ html, body {
     font-size: 0.9rem;
     cursor: pointer;
 }
-.boxy-github-button:hover {
+.boxxy-github-button:hover {
     transform: translate(0, 0);
     box-shadow: 1px 1px 0 #a6e3a1;
 }
-.boxy-releases-button {
-    background-color: #ffffff;
-    border: 2px solid #cba6f7; /* Catppuccin Mauve */
+
+.boxxy-live-button {
+    background-color: #ffffff; /* Catppuccin Mauve inside */
+    border: 2px solid #f38ba8; /* Catppuccin Pink/Red */
     border-radius: 8px;
     padding: 0.5rem 0.8rem !important;
     font-weight: 800;
     color: #11111b !important;
-    box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7, 3px 3px 0 #cba6f7;
+    box-shadow: 1px 1px 0 #f38ba8, 2px 2px 0 #f38ba8, 3px 3px 0 #f38ba8;
     transform: translate(-2px, -2px);
     transition: all 0.1s ease-out;
     display: inline-flex;
@@ -74,11 +75,11 @@ html, body {
     font-size: 0.9rem;
     cursor: pointer;
 }
-.boxy-releases-button:hover {
+.boxxy-live-button:hover {
     transform: translate(0, 0);
-    box-shadow: 1px 1px 0 #cba6f7;
+    box-shadow: 1px 1px 0 #f38ba8;
 }
-.boxy-github-button .star-count {
+.boxxy-github-button .star-count {
     background-color: #f1f1f1;
     color: #11111b;
     padding: 2px 8px;
@@ -141,9 +142,31 @@ html, body {
     border-radius: 16px;
     border: 2px solid #313244;
 }
+.content-area h1, .content-area h2, .content-area h3 {
+    position: relative;
+}
 .content-area h1 { color: #f5e0dc !important; }
 .content-area h2 { color: #f2cdcd !important; }
 .content-area h3 { color: #f9e2af !important; font-size: 1.3em; }
+.zola-anchor {
+    position: absolute;
+    left: -1.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    text-decoration: none !important;
+    color: #45475a !important; /* Catppuccin Surface 1 - very subtle */
+    font-weight: 400;
+}
+h1:hover .zola-anchor, h2:hover .zola-anchor, h3:hover .zola-anchor {
+    opacity: 1;
+}
+.zola-anchor:hover {
+    color: #89b4fa !important; /* Catppuccin Blue on hover */
+}
+/* Hide the default character if it's an icon and replace with # */
+.zola-anchor {
+    font-size: 0.8em;
+}
 .content-area p { line-height: 1.8; margin-bottom: 1.5rem; }
 pre {
     background-color: #11111b !important;
@@ -227,7 +250,7 @@ pre code span, pre code {
 
 /* Override syntax highlighting colors to fit the theme better */
 /* Target the bright green often used for paths and strings */
-pre code span[style*="color: #a6e3a1"], 
+pre code span[style*="color: #a6e3a1"],
 pre code span[style*="color:#a6e3a1"] {
     color: #94e2d5 !important; /* Catppuccin Teal - softer and more terminal-like */
 }
@@ -283,7 +306,7 @@ pre code span[style*="color:#40a02b"] {
 .subtitle {
     color: #bac2de !important;
 }
-.boxy-badge {
+.boxxy-badge {
     display: inline-flex;
     align-items: center;
     background-color: #1e1e2e;
@@ -297,7 +320,7 @@ pre code span[style*="color:#40a02b"] {
     transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
     user-select: none;
 }
-.boxy-badge:hover {
+.boxxy-badge:hover {
     transform: translate(0, 0);
     box-shadow: 1px 1px 0 #f38ba8;
 }
@@ -337,19 +360,19 @@ pre code span[style*="color:#40a02b"] {
     0% { transform: translateX(-50%) scale(0.5); opacity: 0; }
     100% { transform: translateX(-50%) scale(1); opacity: 1; }
 }
-.boxy-badge img {
+.boxxy-badge img {
     width: 75px;
     height: auto;
     margin-right: 1.25rem;
     filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3));
 }
-.boxy-badge-text {
+.boxxy-badge-text {
     font-size: 1.5rem;
     font-weight: 800;
     color: #f5e0dc;
     line-height: 1.1;
 }
-.boxy-badge-text .feat {
+.boxxy-badge-text .feat {
     font-size: 0.8rem;
     display: block;
     letter-spacing: 2.5px;
@@ -358,7 +381,7 @@ pre code span[style*="color:#40a02b"] {
     margin-bottom: 2px;
     font-weight: 600;
 }
-.boxy-badge-text .highlight {
+.boxxy-badge-text .highlight {
     color: #f38ba8;
 }
 .fancy-title {
@@ -390,7 +413,7 @@ pre code span[style*="color:#40a02b"] {
     transform: translate(0, 0);
     box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7;
 }
-.boxy-button {
+.boxxy-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -408,22 +431,22 @@ pre code span[style*="color:#40a02b"] {
     cursor: pointer;
     text-decoration: none !important;
 }
-.boxy-button:hover {
+.boxxy-button:hover {
     transform: translate(0, 0);
     box-shadow: 1px 1px 0 #89b4fa;
 }
-.boxy-button.is-alt {
+.boxxy-button.is-alt {
     border-color: #cba6f7; /* Mauve */
     box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7, 3px 3px 0 #cba6f7, 4px 4px 0 #cba6f7;
 }
-.boxy-button.is-alt:hover {
+.boxxy-button.is-alt:hover {
     box-shadow: 1px 1px 0 #cba6f7;
 }
-.boxy-button.is-dev {
+.boxxy-button.is-dev {
     border-color: #a6e3a1; /* Green */
     box-shadow: 1px 1px 0 #a6e3a1, 2px 2px 0 #a6e3a1, 3px 3px 0 #a6e3a1, 4px 4px 0 #a6e3a1;
 }
-.boxy-button.is-dev:hover {
+.boxxy-button.is-dev:hover {
     box-shadow: 1px 1px 0 #a6e3a1;
 }
 
@@ -447,7 +470,7 @@ pre code span[style*="color:#40a02b"] {
         font-size: 1.8rem !important;
         text-align: center;
     }
-    .boxy-badge {
+    .boxxy-badge {
         margin-left: 0;
         transform: scale(0.9);
     }
@@ -456,7 +479,7 @@ pre code span[style*="color:#40a02b"] {
         flex-direction: column;
         align-items: center;
     }
-    .boxy-button {
+    .boxxy-button {
         width: 100%;
         margin-right: 0 !important;
         margin-bottom: 1rem;

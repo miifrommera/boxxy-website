@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telemetry Dashboard - Boxxy Terminal</title>
+    <title>Boxxy Terminal</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,20 +16,20 @@
         <div class="container">
             <div class="navbar-brand">
                 <div class="navbar-item">
-                    <a class="boxy-brand-button" href="/">
+                    <a class="boxxy-brand-button" href="/">
                         <strong>Boxxy Terminal</strong>
                     </a>
                 </div>
             </div>
             <div class="navbar-end" style="gap: 1rem; align-items: center; display: flex;">
                 <div class="navbar-item" style="padding: 0;">
-                    <a class="boxy-releases-button" href="https://github.com/miifrommera/boxxy/releases" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                        <span>Releases</span>
+                    <a class="boxxy-live-button" href="/live">
+                        <span style="width: 8px; height: 8px; background-color: #f38ba8; border-radius: 50%; display: inline-block; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; border: 1.5px solid #11111b;"></span>
+                        <span>Live</span>
                     </a>
                 </div>
                 <div class="navbar-item" style="padding: 0;">
-                    <a class="boxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
+                    <a class="boxxy-github-button" href="https://github.com/miifrommera/boxxy" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         <span>Star</span>
                         <span class="star-count" id="github-stars">...</span>
@@ -42,233 +42,92 @@
     
 <section class="section">
     <div class="container">
-        <div class="columns is-centered">
+        <div class="columns">
+            <!-- Sidebar Navigation -->
+            <aside class="column is-3">
+                <div class="sidebar">
+                    <p class="sidebar-title">Getting Started</p>
+                    <ul class="menu-list mb-5">
+                        <li><a href="/getting-started" class="">Getting Started</a></li>
+                        <li><a href="/how-it-works" class="">How It Works</a></li>
+                        <li><a href="/development" class="">Development</a></li>
+                        <li><a href="/telemetry" class="is-active">Telemetry</a></li>
+                    </ul>
+
+                    <p class="sidebar-title">What Boxxy Can Do</p>
+                    <ul class="menu-list mb-5">
+                        <li><a href="/features" class="">Features</a></li>
+                        <li><a href="/use-cases" class="">Use Cases</a></li>
+                    </ul>
+
+                    <p class="sidebar-title">Community</p>
+                    <ul class="menu-list">
+                        <li><a href="/releases" class="">Releases</a></li>
+                        <li><a href="/live" class="" style="display: flex; align-items: center; gap: 0.5rem;">
+                            Dashboard
+                            <span style="background-color: #f38ba8; color: #11111b; font-size: 0.6rem; font-weight: 900; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">Live</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </aside>
+
             <!-- Main Content Area -->
-            <main class="column is-10">
-                <div class="has-text-centered mb-6">
-                    <h1 class="title is-1 fancy-title mb-2">Last <span class="gradient-text">7 Days</span></h1>
-                    <p class="subtitle is-4" style="color: #a6adc8; font-weight: 600;">
-                        Live Telemetry • <span id="date-range" style="color: #89b4fa; font-size: 0.9em; font-weight: 500;">Loading range...</span>
-                    </p>
-                </div>
+            <main class="column is-9">
+                <div class="content content-area">
+                    
+                        <h1 id="telemetry"><a class="zola-anchor" href="#telemetry" aria-label="Anchor link for: telemetry">🔗</a>Telemetry</h1>
+<p>Boxxy Terminal includes a =privacy-first=, open-source telemetry system designed to help us improve the application's performance, stability, and especially the AI features, such as tracking tool acceptance and rejection rates. Basically, telemetry is your way of contributing to the project!</p>
+<p>We believe in =complete transparency= regarding the data we collect, so we publicly share this data in <a href="/live">REAL TIME</a> with the hope that it will prove valuable for the open-source community!</p>
+<hr />
+<h2 id="privacy-principles"><a class="zola-anchor" href="#privacy-principles" aria-label="Anchor link for: privacy-principles">🔗</a>Privacy Principles</h2>
+<ul>
+<li><strong>Opt-In/Opt-Out:</strong> Telemetry is strictly configurable. While it may be enabled by default during preview phases to gather initial feedback, you can easily disable it at any time via =Preferences=.</li>
+<li><strong>Zero PII (Personally Identifiable Information):</strong> We <strong>never</strong> collect file paths, file contents, usernames, IP addresses, prompt contents, or terminal outputs.</li>
+<li><strong>Anonymous Identifiers:</strong>
+<ul>
+<li><code>install_id</code>: A random, anonymous identifier generated once when you first run the app. This helps us count unique installations without knowing who you are.</li>
+<li><code>session_id</code>: A random identifier generated each time you launch the app, kept only in memory for that session. This helps us understand session lengths and distinguish between many users vs. a single user launching the app multiple times.</li>
+</ul>
+</li>
+<li><strong>Open Standard:</strong> We use the industry-standard =OpenTelemetry (OTel)= protocol, ensuring our data collection methods are open and auditable.</li>
+</ul>
+<hr />
+<h2 id="what-data-we-collect"><a class="zola-anchor" href="#what-data-we-collect" aria-label="Anchor link for: what-data-we-collect">🔗</a>What Data We Collect</h2>
+<p>We focus on collecting high-impact, low-cardinality metrics to provide value while keeping the data footprint extremely small.</p>
+<p>Here is the exhaustive list of the metrics we track when telemetry is enabled:</p>
+<table><thead><tr><th style="text-align: left">Category</th><th style="text-align: left">Metric Name</th><th style="text-align: left">Description</th><th style="text-align: left">Data Attributes Collected</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>Growth &amp; Usage</strong></td><td style="text-align: left"><code>app.launch</code></td><td style="text-align: left">Triggered once per application startup.</td><td style="text-align: left"><code>os</code>, <code>arch</code>, <code>pkg_type</code> (e.g., flatpak, native), <code>version</code>, <code>shell</code> (e.g., bash, zsh, fish)</td></tr>
+<tr><td style="text-align: left"><strong>AI Usage</strong></td><td style="text-align: left"><code>ai.tokens</code></td><td style="text-align: left">The number of tokens consumed during an AI interaction.</td><td style="text-align: left"><code>model_name</code>, <code>role</code> (input/output), <code>feature</code></td></tr>
+<tr><td style="text-align: left"><strong>AI Performance</strong></td><td style="text-align: left"><code>ai.invocations</code></td><td style="text-align: left">A count of AI requests initiated by the user.</td><td style="text-align: left"><code>model_provider</code>, <code>model_name</code>, <code>feature</code></td></tr>
+<tr><td style="text-align: left"><strong>AI Quality</strong></td><td style="text-align: left"><code>ai.latency</code></td><td style="text-align: left">The time it takes (in milliseconds) to receive the first token back from the AI model.</td><td style="text-align: left"><code>model_name</code>, <code>provider</code>, <code>feature</code></td></tr>
+<tr><td style="text-align: left"><strong>Product Features</strong></td><td style="text-align: left"><code>tool.use</code></td><td style="text-align: left">A count of which AI tools are being utilized by the agent.</td><td style="text-align: left"><code>tool_name</code> (e.g., <code>sys_shell_exec</code>, <code>file_read</code>)</td></tr>
+<tr><td style="text-align: left"><strong>Retention</strong></td><td style="text-align: left"><code>claw.session_resume</code></td><td style="text-align: left">Triggered when a previous BoxxyClaw session is restored.</td><td style="text-align: left"><code>session_type</code> (e.g., normal, pinned)</td></tr>
+</tbody></table>
+<hr />
+<h2 id="how-the-data-is-used"><a class="zola-anchor" href="#how-the-data-is-used" aria-label="Anchor link for: how-the-data-is-used">🔗</a>How the Data is Used</h2>
+<p>The data collected is securely transmitted to our backend infrastructure. We use this aggregated, anonymous data to:</p>
+<ul>
+<li>Understand which features and AI models are most popular.</li>
+<li>Diagnose performance bottlenecks (e.g., high latency with specific providers).</li>
+<li>Prioritize development efforts for different operating systems and deployment methods.</li>
+<li>Publish =public, aggregated community statistics=.</li>
+</ul>
+<p><strong>Note:</strong> Gathering information and policies might change, so please check back, or just check the code! 😊</p>
 
-                <div id="loading-state" class="has-text-centered my-6 py-6">
-                    <p class="subtitle is-4" style="color: #a6adc8; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">Loading Global Stats...</p>
-                    <style>
-                        @keyframes pulse {
-                            0%, 100% { opacity: 1; }
-                            50% { opacity: .5; }
-                        }
-                    </style>
-                </div>
+                    
 
-                <div id="dashboard-content" style="display: none;">
-                    <div class="columns is-multiline is-centered">
-                        <!-- Hero Stats -->
-                        <div class="column is-4">
-                            <div class="fancy-box p-5 has-text-centered" style="height: 100%;">
-                                <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Weekly AI Tokens</h3>
-                                <p id="total-tokens-week" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #89dceb; font-weight: 700;">-</p>
-                                <p style="color: #6c7086; font-size: 0.8rem; font-weight: 600;">All-time: <span id="total-tokens-alltime">-</span></p>
-                            </div>
-                        </div>
-
-                        <div class="column is-4">
-                            <div class="fancy-box p-5 has-text-centered" style="height: 100%; border-color: #f9e2af; box-shadow: 1px 1px 0 #f9e2af, 2px 2px 0 #f9e2af, 3px 3px 0 #f9e2af, 4px 4px 0 #f9e2af, 5px 5px 0 #f9e2af, 6px 6px 0 #f9e2af;">
-                                <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">ClAW Adoption</h3>
-                                <p id="claw-adoption" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #f9e2af; font-weight: 700;">-%</p>
-                                <p style="color: #6c7086; font-size: 0.8rem; font-weight: 600;">of app launches</p>
-                            </div>
-                        </div>
-
-                        <div class="column is-4">
-                            <div class="fancy-box p-5 has-text-centered" style="height: 100%; border-color: #cba6f7; box-shadow: 1px 1px 0 #cba6f7, 2px 2px 0 #cba6f7, 3px 3px 0 #cba6f7, 4px 4px 0 #cba6f7, 5px 5px 0 #cba6f7, 6px 6px 0 #cba6f7;">
-                                <h3 style="color: #a6adc8; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px;">Daily Developers</h3>
-                                <p id="current-dau" class="mt-3" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 2.5rem; color: #cba6f7; font-weight: 700;">-</p>
-                                <p style="color: #6c7086; font-size: 0.8rem; font-weight: 600;">Active Today</p>
-                            </div>
-                        </div>
-
-                        <!-- Tool Usage Table -->
-                        <div class="column is-12 mt-5">
-                            <div class="content-area">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Tools usage</h3>
-                                <div id="tools-container">
-                                    <!-- Populated by JS -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ClAW Providers and Shell Usage -->
-                        <div class="column is-6 mt-5">
-                            <div class="content-area" style="height: 100%;">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">ClAW Providers</h3>
-                                <ul id="providers-container" style="list-style: none; margin: 0; padding: 0;">
-                                    <!-- Populated by JS -->
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="column is-6 mt-5">
-                            <div class="content-area" style="height: 100%;">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">Shell Usage</h3>
-                                <ul id="shell-container" style="list-style: none; margin: 0; padding: 0;">
-                                    <!-- Populated by JS -->
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- OS Usage -->
-                        <div class="column is-12 mt-5">
-                            <div class="content-area" style="height: 100%;">
-                                <h3 style="color: #a6adc8 !important; text-transform: uppercase; font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: 1px;">OS Usage</h3>
-                                <ul id="os-container" style="list-style: none; margin: 0; padding: 0;">
-                                    <!-- Populated by JS -->
-                                </ul>
-                            </div>
-                        </div>
-
+                    <hr style="margin-top: 3rem; background-color: #313244; height: 1px;">
+                    <div class="has-text-right">
+                        <a href="https://github.com/miifrommera/boxxy-website/edit/main/content&#x2F;telemetry.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                            Improve this page
+                        </a>
                     </div>
                 </div>
             </main>
         </div>
     </div>
 </section>
-
-<!-- Supabase JS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", async () => {
-        const supabaseUrl = 'https://qfwhesnmixgmczkdnvsu.supabase.co';
-        const supabaseAnonKey = 'sb_publishable_Z-SbIil88PSj3ri24CM7aw_8vzsCFie';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
-
-        try {
-            const [statsRes, toolsRes, osRes, shellRes, providerRes, adoptionRes] = await Promise.all([
-                supabase.from('public_stats_daily').select('*').order('day', { ascending: false }).limit(30),
-                supabase.from('tool_usage_stats_7d').select('*').limit(10),
-                supabase.from('os_usage_stats_7d').select('*'),
-                supabase.from('shell_usage_stats_7d').select('*'),
-                supabase.from('claw_provider_stats_7d').select('*'),
-                supabase.from('claw_usage_per_launch_stats_7d').select('*').limit(1)
-            ]);
-
-            const daily = statsRes.data || [];
-            const tools = toolsRes.data || [];
-            const osData = osRes.data || [];
-            const shellData = shellRes.data || [];
-            const providers = providerRes.data || [];
-            const adoption = adoptionRes.data && adoptionRes.data.length > 0 ? adoptionRes.data[0] : null;
-
-            // Calculate totals and date range
-            const last7Days = daily.slice(0, 7);
-            const tokensLastWeek = last7Days.reduce((acc, curr) => acc + (Number(curr.total_tokens) || 0), 0);
-            const tokensAllTime = daily.reduce((acc, curr) => acc + (Number(curr.total_tokens) || 0), 0);
-            const currentDau = daily[0]?.dau || 0;
-
-            // Date range formatting
-            if (last7Days.length > 0) {
-                const formatDate = (dateStr) => {
-                    const date = new Date(dateStr);
-                    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                };
-                const start = formatDate(last7Days[last7Days.length - 1].day);
-                const end = formatDate(last7Days[0].day);
-                document.getElementById('date-range').innerText = `${start} - ${end}, ${new Date().getFullYear()}`;
-            }
-
-            document.getElementById('total-tokens-week').innerText = tokensLastWeek.toLocaleString();
-            document.getElementById('total-tokens-alltime').innerText = tokensAllTime.toLocaleString();
-            document.getElementById('current-dau').innerText = currentDau.toLocaleString();
-            
-            if (adoption && adoption.adoption_rate_percent !== null) {
-                document.getElementById('claw-adoption').innerText = `${adoption.adoption_rate_percent}%`;
-            }
-
-            const toolsContainer = document.getElementById('tools-container');
-            toolsContainer.innerHTML = '';
-
-            if (tools.length === 0) {
-                toolsContainer.innerHTML = '<p class="has-text-centered" style="color: #a6adc8;">No tool usage data available yet.</p>';
-            } else {
-                tools.forEach(tool => {
-                    toolsContainer.innerHTML += `
-                        <div class="is-flex is-justify-content-space-between is-align-items-center mb-3 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
-                            <code style="color: #94e2d5 !important; background: transparent !important; border: none !important; font-size: 1rem !important; padding: 0 !important;">${tool.tool_name}</code>
-                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #bac2de; font-weight: 600;">${tool.usage_count.toLocaleString()} uses</span>
-                        </div>
-                    `;
-                });
-            }
-
-            const providersContainer = document.getElementById('providers-container');
-            providersContainer.innerHTML = '';
-            if (providers.length === 0) {
-                providersContainer.innerHTML = '<li class="has-text-centered" style="color: #a6adc8;">No provider data available yet.</li>';
-            } else {
-                // Calculate the sum of users to get the percentage denominator
-                const totalProviderUsers = providers.reduce((acc, p) => acc + p.user_count, 0);
-
-                providers.forEach(p => {
-                    // Capitalize (e.g., "openai" -> "OpenAI")
-                    const name = p.provider_name === 'openai' ? 'OpenAI' : p.provider_name.charAt(0).toUpperCase() + p.provider_name.slice(1);
-
-                    // Calculate the percentage
-                    const percentage = totalProviderUsers > 0
-                        ? ((p.user_count / totalProviderUsers) * 100).toFixed(1)
-                        : 0;
-
-                    providersContainer.innerHTML += `
-                        <li class="is-flex is-justify-content-space-between is-align-items-center mb-2 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
-                            <span style="color: #cdd6f4; font-weight: 700;">${name}</span>
-                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #f5e0dc;">
-                                ${percentage}% <small style="color: #6c7086; margin-left: 8px; font-size: 0.8em;">(${p.user_count.toLocaleString()} devs)</small>
-                            </span>
-                        </li>
-                    `;
-                });
-            }
-
-            const osContainer = document.getElementById('os-container');
-            osContainer.innerHTML = '';
-            if (osData.length === 0) {
-                osContainer.innerHTML = '<li class="has-text-centered" style="color: #a6adc8;">No OS data available yet.</li>';
-            } else {
-                osData.forEach(os => {
-                    osContainer.innerHTML += `
-                        <li class="is-flex is-justify-content-space-between is-align-items-center mb-2 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
-                            <span style="color: #cdd6f4; font-weight: 700;">${os.os_name}</span>
-                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #f5e0dc;">${os.user_count.toLocaleString()} devs</span>
-                        </li>
-                    `;
-                });
-            }
-
-            const shellContainer = document.getElementById('shell-container');
-            shellContainer.innerHTML = '';
-            if (shellData.length === 0) {
-                shellContainer.innerHTML = '<li class="has-text-centered" style="color: #a6adc8;">No shell data available yet.</li>';
-            } else {
-                shellData.forEach(sh => {
-                    shellContainer.innerHTML += `
-                        <li class="is-flex is-justify-content-space-between is-align-items-center mb-2 p-3" style="background-color: #313244; border-radius: 8px; border: 1px solid #45475a;">
-                            <span style="color: #cdd6f4; font-weight: 700;">${sh.shell_name}</span>
-                            <span style="font-family: 'JetBrains Mono', 'Fira Code', monospace; color: #f5e0dc;">${sh.user_count.toLocaleString()} devs</span>
-                        </li>
-                    `;
-                });
-            }
-
-            // Show dashboard, hide loading
-            document.getElementById('loading-state').style.display = 'none';
-            document.getElementById('dashboard-content').style.display = 'block';
-
-        } catch (err) {
-            console.error("Failed to fetch telemetry data:", err);
-            document.getElementById('loading-state').innerHTML = '<p style="color: #f38ba8;">Failed to load telemetry data. Please try again later.</p>';
-        }
-    });
-</script>
 
 
     <footer class="footer">
