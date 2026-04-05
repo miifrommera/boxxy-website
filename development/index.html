@@ -105,9 +105,9 @@
 <pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">flatpak-builder</span><span style="color: #A6E3A1;"> --user --install --force-clean build-dir flatpak/dev.boxxy.BoxxyTerminal.yml</span></span></code></pre>
 <hr />
 <h2 id="context"><a class="zola-anchor" href="#context" aria-label="Anchor link for: context">🔗</a>Context</h2>
-<p>One of the most important things to monitor is the exact context Boxxy sends to the model. You can inspect this by enabling debug logging:</p>
-<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span>RUST_LOG</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">debug</span><span style="color: #89B4FA;font-style: italic;"> cargo</span><span style="color: #A6E3A1;"> run -p boxxy-app</span></span></code></pre>
-<p><strong>Note:</strong> Debug-level logs are typically only available when running development builds.</p>
+<p>One of the most important things to monitor is the exact context Boxxy sends to the model. You can inspect this by enabling context logging:</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;"><code data-lang="shellscript"><span class="giallo-l"><span>BOXXY_DEBUG_CONTEXT</span><span style="color: #94E2D5;">=</span><span style="color: #A6E3A1;">1</span><span style="color: #89B4FA;font-style: italic;"> cargo</span><span style="color: #A6E3A1;"> run -p boxxy-app</span></span></code></pre>
+<p>(This works in both debug and release builds, but will remain completely silent unless the variable is set to 1.)</p>
 
                     
 

@@ -126,7 +126,8 @@
 <hr />
 <h2 id="token-consumption"><a class="zola-anchor" href="#token-consumption" aria-label="Anchor link for: token-consumption">🔗</a>Token Consumption</h2>
 <p>Boxxy is nor context-cheap! To perform at its best, it simultaneously processes a comprehensive set of data: the core toolbox, your active skills, relevant memories, and a snapshot of the terminal buffer.</p>
-<p>You can monitor real-time usage via the =ClawSidebar=. However, modern flagship models (like Gemini, Claude, and GPT) utilize advanced <strong>Context Caching</strong>. This typically reduces the actual billable tokens by up to 80-90% for subsequent requests in the same session. To inspect the exact payload Boxxy is broadcasting, you can <a href="https://boxxy.dev/development/#context">enable debug logging</a>.</p>
+<p>You can monitor real-time usage via the =ClawSidebar=. However, modern flagship models (like Gemini, Claude, and GPT) utilize advanced <strong>Context Caching</strong>. This typically reduces the actual billable tokens by up to 80-90% for subsequent requests in the same session.</p>
+<p>To inspect the exact payload Boxxy is broadcasting, you can run Booxy with =Context Logging Env= <code>BOXXY_DEBUG_CONTEXT=1</code></p>
 <hr />
 <h2 id="other-tweaks"><a class="zola-anchor" href="#other-tweaks" aria-label="Anchor link for: other-tweaks">🔗</a>Other Tweaks</h2>
 <p>Depending on your distribution, you may need to raise your system's <code>inotify</code> limits. You can check your current values with:</p>
