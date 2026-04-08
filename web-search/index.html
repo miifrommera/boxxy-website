@@ -58,9 +58,9 @@
                     <ul class="menu-list mb-5">
                         <li><a href="/features" class="">Features</a></li>
                         <li><a href="/mcp" class="">MCP</a></li>
-                        <li><a href="/web-search" class="">Web Search</a></li>
+                        <li><a href="/web-search" class="is-active">Web Search</a></li>
                         <li><a href="/skills" class="">Agent Skills</a></li>
-                        <li><a href="/use-cases" class="is-active">Use Cases</a></li>
+                        <li><a href="/use-cases" class="">Use Cases</a></li>
                     </ul>
 
                     <p class="sidebar-title">Community</p>
@@ -78,39 +78,57 @@
             <main class="column is-9">
                 <div class="content content-area">
                     
-                        <h1 id="use-cases"><a class="zola-anchor" href="#use-cases" aria-label="Anchor link for: use-cases">🔗</a>Use Cases</h1>
-<p>Boxxy is built to handle everything from daily terminal tasks to complex Linux system administration. Think of it as your ultimate Linuxbox assistant. Here are five ways Boxxy can supercharge your workflow:</p>
-<h3 id="1-fixing-broken-dependencies"><a class="zola-anchor" href="#1-fixing-broken-dependencies" aria-label="Anchor link for: 1-fixing-broken-dependencies">🔗</a>1. Fixing Broken Dependencies</h3>
+                        <h1 id="web-search"><a class="zola-anchor" href="#web-search" aria-label="Anchor link for: web-search">🔗</a>Web Search</h1>
+<p>Boxxy Terminal features integrated real-time web search, allowing your AI agents to browse the internet to find documentation, troubleshoot errors, or gather up-to-date information directly from the terminal.</p>
+<h2 id="supported-search-engines"><a class="zola-anchor" href="#supported-search-engines" aria-label="Anchor link for: supported-search-engines">🔗</a>Supported Search Engines</h2>
+<p>Currently, Boxxy supports <strong>Tavily</strong> as the primary search provider. Tavily is specifically optimized for LLMs, providing clean, search-engine-optimized content that helps agents generate more accurate responses.</p>
+<hr />
+<h2 id="setting-up-web-search"><a class="zola-anchor" href="#setting-up-web-search" aria-label="Anchor link for: setting-up-web-search">🔗</a>Setting Up Web Search</h2>
+<p>To enable web search capability:</p>
+<ol>
+<li><strong>Get an API Key:</strong> Sign up at <a rel="external" href="https://tavily.com/">Tavily</a> to get your free or pro API key.</li>
+<li><strong>Configure in Boxxy:</strong>
 <ul>
-<li><strong>The Scenario:</strong> You try to install a package with <code>apt</code> or <code>dnf</code>, but it fails due to a nightmare of conflicting dependencies or missing GPG keys.</li>
-<li><strong>The Boxxy Way:</strong> Instead of hunting through StackOverflow, press <code>Control + /</code> and type "fix this." Boxxy automatically reads the failure from your terminal buffer, uses its Toolbox to check your package manager's state, and proposes the exact commands needed to resolve the conflicts or import the missing keys.</li>
+<li>Open Boxxy =Preferences= (<code>Ctrl+,</code>).</li>
+<li>Navigate to the =APIs= tab on the left sidebar.</li>
+<li>Find the <strong>Search Engines</strong> section.</li>
+<li>Enter your key in the <strong>Tavily API Key</strong> field.</li>
 </ul>
-<h3 id="2-complex-system-configuration"><a class="zola-anchor" href="#2-complex-system-configuration" aria-label="Anchor link for: 2-complex-system-configuration">🔗</a>2. Complex System Configuration</h3>
+</li>
+<li><strong>Enable the Tool:</strong>
 <ul>
-<li><strong>The Scenario:</strong> You need to configure a new Nginx site with SSL, set up a complicated <code>systemd</code> service, or tweak your firewall rules.</li>
-<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and ask: "Help me set up an Nginx site for example.com with SSL." Boxxy checks your OS version, verifies if Nginx is installed, proposes the necessary configuration file writes in <code>/etc/nginx</code>, and guides you through the SSL generation—all while you simply click "Approve" for each step.</li>
+<li>Switch to the =Agents= tab in Preferences.</li>
+<li>Under <strong>Agent Toolbox</strong>, ensure <strong>Enable Web Search</strong> is toggled <strong>ON</strong>.</li>
 </ul>
-<h3 id="3-system-cleanup-maintenance"><a class="zola-anchor" href="#3-system-cleanup-maintenance" aria-label="Anchor link for: 3-system-cleanup-maintenance">🔗</a>3. System Cleanup &amp; Maintenance</h3>
+</li>
+</ol>
+<hr />
+<h2 id="using-web-search"><a class="zola-anchor" href="#using-web-search" aria-label="Anchor link for: using-web-search">🔗</a>Using Web Search</h2>
+<p>Web search is a powerful tool in your agent's toolbox. You can use it in two ways:</p>
+<h3 id="1-manual-activation-per-pane"><a class="zola-anchor" href="#1-manual-activation-per-pane" aria-label="Anchor link for: 1-manual-activation-per-pane">🔗</a>1. Manual Activation (Per Pane)</h3>
+<p>You can toggle web search on or off for a specific terminal pane without changing your global settings.</p>
 <ul>
-<li><strong>The Scenario:</strong> Your root partition is at 99% capacity and you have no idea where the space went.</li>
-<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and type: "My disk is full, help me clean it up safely." Because Boxxy can execute host-level commands, it runs <code>du</code> or <code>ncdu</code> in the background, analyzes the largest directories, and safely proposes the deletion of old Docker images, stale package caches, or orphaned logs.</li>
+<li>Open the =Claw Message Bar= (<code>Ctrl+/</code>).</li>
+<li>Click the <strong>Globe Icon</strong> to toggle web search for the current session.</li>
 </ul>
-<h3 id="4-interactive-scripting-with-bookmarks"><a class="zola-anchor" href="#4-interactive-scripting-with-bookmarks" aria-label="Anchor link for: 4-interactive-scripting-with-bookmarks">🔗</a>4. Interactive Scripting with Bookmarks</h3>
+<h3 id="2-automatic-search"><a class="zola-anchor" href="#2-automatic-search" aria-label="Anchor link for: 2-automatic-search">🔗</a>2. Automatic Search</h3>
+<p>If enabled, the agent will automatically decide to use the web whenever it needs information it doesn't have—for example, if you ask about a library released yesterday or a specific error code from a cloud provider.</p>
+<blockquote>
+<p><strong>Example Prompt:</strong> "Search the web for the latest breaking changes in React 19 and summarize them."</p>
+</blockquote>
+<hr />
+<h2 id="security-control"><a class="zola-anchor" href="#security-control" aria-label="Anchor link for: security-control">🔗</a>Security &amp; Control</h2>
 <ul>
-<li><strong>The Scenario:</strong> You have a common deployment or cleanup script you run frequently, but it requires different parameters each time.</li>
-<li><strong>The Boxxy Way:</strong> Save the script as a <strong>Bookmark</strong> using <code>{{{project_name}}}</code> variables. When you run it from the Command Palette, Boxxy natively prompts you for the dynamic inputs, executes the script, and its agent monitors the output to ensure everything ran successfully.</li>
-</ul>
-<h3 id="5-context-aware-log-analysis"><a class="zola-anchor" href="#5-context-aware-log-analysis" aria-label="Anchor link for: 5-context-aware-log-analysis">🔗</a>5. Context-Aware Log Analysis</h3>
-<ul>
-<li><strong>The Scenario:</strong> You're tailing <code>journalctl</code> or a production log file and spot a recurring system error that makes no sense.</li>
-<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and ask: "What does this kernel panic mean?" Boxxy analyzes the surrounding log context in your terminal buffer, looks up documentation using its Web Search tool, and explains the root cause without you ever leaving the terminal.</li>
+<li><strong>Master Switch:</strong> You can globally disable the web search capability in the =Agents= preferences tab.</li>
+<li><strong>Approval Protocol:</strong> By default, Boxxy agents will describe their intent to search before performing the action, keeping you in control of what data is being sent to search providers.</li>
+<li><strong>Privacy:</strong> Boxxy only sends the search query to the provider; your local terminal history and file contents are never shared with search engines unless explicitly requested.</li>
 </ul>
 
                     
 
                     <hr style="margin-top: 3rem; background-color: #313244; height: 1px;">
                     <div class="has-text-right">
-                        <a href="https://github.com/miifrommera/boxxy-website/edit/main/content&#x2F;use-cases.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">
+                        <a href="https://github.com/miifrommera/boxxy-website/edit/main/content&#x2F;web-search.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                             Improve this page
                         </a>

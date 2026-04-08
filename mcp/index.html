@@ -57,10 +57,10 @@
                     <p class="sidebar-title">What Boxxy Can Do</p>
                     <ul class="menu-list mb-5">
                         <li><a href="/features" class="">Features</a></li>
-                        <li><a href="/mcp" class="">MCP</a></li>
+                        <li><a href="/mcp" class="is-active">MCP</a></li>
                         <li><a href="/web-search" class="">Web Search</a></li>
                         <li><a href="/skills" class="">Agent Skills</a></li>
-                        <li><a href="/use-cases" class="is-active">Use Cases</a></li>
+                        <li><a href="/use-cases" class="">Use Cases</a></li>
                     </ul>
 
                     <p class="sidebar-title">Community</p>
@@ -78,39 +78,61 @@
             <main class="column is-9">
                 <div class="content content-area">
                     
-                        <h1 id="use-cases"><a class="zola-anchor" href="#use-cases" aria-label="Anchor link for: use-cases">🔗</a>Use Cases</h1>
-<p>Boxxy is built to handle everything from daily terminal tasks to complex Linux system administration. Think of it as your ultimate Linuxbox assistant. Here are five ways Boxxy can supercharge your workflow:</p>
-<h3 id="1-fixing-broken-dependencies"><a class="zola-anchor" href="#1-fixing-broken-dependencies" aria-label="Anchor link for: 1-fixing-broken-dependencies">🔗</a>1. Fixing Broken Dependencies</h3>
+                        <h1 id="model-context-protocol-mcp"><a class="zola-anchor" href="#model-context-protocol-mcp" aria-label="Anchor link for: model-context-protocol-mcp">🔗</a>Model Context Protocol (MCP)</h1>
+<p>Boxxy Terminal natively supports the <strong>Model Context Protocol (MCP)</strong>, an open standard that allows you to securely connect your AI agents to external tools, databases, and APIs.</p>
+<p>With MCP, you can give =BoxxyClaw= access to:</p>
 <ul>
-<li><strong>The Scenario:</strong> You try to install a package with <code>apt</code> or <code>dnf</code>, but it fails due to a nightmare of conflicting dependencies or missing GPG keys.</li>
-<li><strong>The Boxxy Way:</strong> Instead of hunting through StackOverflow, press <code>Control + /</code> and type "fix this." Boxxy automatically reads the failure from your terminal buffer, uses its Toolbox to check your package manager's state, and proposes the exact commands needed to resolve the conflicts or import the missing keys.</li>
+<li>Live, version-specific documentation (e.g., Context7)</li>
+<li>Your local file system or Git repositories</li>
+<li>External APIs (e.g., Slack, Jira, GitHub)</li>
+<li>Custom scripts or internal company tools</li>
 </ul>
-<h3 id="2-complex-system-configuration"><a class="zola-anchor" href="#2-complex-system-configuration" aria-label="Anchor link for: 2-complex-system-configuration">🔗</a>2. Complex System Configuration</h3>
+<hr />
+<h2 id="adding-an-mcp-server"><a class="zola-anchor" href="#adding-an-mcp-server" aria-label="Anchor link for: adding-an-mcp-server">🔗</a>Adding an MCP Server</h2>
+<p>To add a new MCP server:</p>
+<ol>
+<li>Open Boxxy =Preferences= (<code>Ctrl+,</code>).</li>
+<li>Navigate to the =MCP= tab on the left sidebar.</li>
+<li>Click <strong>Add MCP Server...</strong>.</li>
+</ol>
+<p>You will be presented with a configuration dialog where you can define your server's connection details. Boxxy supports two transport methods:</p>
+<h3 id="1-stdio-local-commands"><a class="zola-anchor" href="#1-stdio-local-commands" aria-label="Anchor link for: 1-stdio-local-commands">🔗</a>1. Stdio (Local Commands)</h3>
+<p>Use this for tools that run locally on your machine, such as Node.js packages or native binaries.</p>
 <ul>
-<li><strong>The Scenario:</strong> You need to configure a new Nginx site with SSL, set up a complicated <code>systemd</code> service, or tweak your firewall rules.</li>
-<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and ask: "Help me set up an Nginx site for example.com with SSL." Boxxy checks your OS version, verifies if Nginx is installed, proposes the necessary configuration file writes in <code>/etc/nginx</code>, and guides you through the SSL generation—all while you simply click "Approve" for each step.</li>
+<li><strong>Name:</strong> A recognizable name for your server (e.g., <code>GitHub Local</code>).</li>
+<li><strong>Transport:</strong> Select <code>Stdio (Command)</code>.</li>
+<li><strong>Command:</strong> The executable to run (e.g., <code>npx</code>, <code>python</code>, or a path like <code>/usr/local/bin/my-tool</code>).</li>
+<li><strong>Args:</strong> Comma-separated arguments to pass to the command (e.g., <code>-y, @modelcontextprotocol/server-github</code>).</li>
+<li><strong>Env (KEY=VAL,...):</strong> Comma-separated environment variables required by the tool (e.g., <code>GITHUB_PERSONAL_ACCESS_TOKEN=your_token_here</code>).</li>
 </ul>
-<h3 id="3-system-cleanup-maintenance"><a class="zola-anchor" href="#3-system-cleanup-maintenance" aria-label="Anchor link for: 3-system-cleanup-maintenance">🔗</a>3. System Cleanup &amp; Maintenance</h3>
+<hr />
+<h3 id="2-http-streamable-remote-servers"><a class="zola-anchor" href="#2-http-streamable-remote-servers" aria-label="Anchor link for: 2-http-streamable-remote-servers">🔗</a>2. HTTP Streamable (Remote Servers)</h3>
+<p>Use this for modern, cloud-hosted MCP servers that support high-concurrency streaming.</p>
 <ul>
-<li><strong>The Scenario:</strong> Your root partition is at 99% capacity and you have no idea where the space went.</li>
-<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and type: "My disk is full, help me clean it up safely." Because Boxxy can execute host-level commands, it runs <code>du</code> or <code>ncdu</code> in the background, analyzes the largest directories, and safely proposes the deletion of old Docker images, stale package caches, or orphaned logs.</li>
+<li><strong>Name:</strong> A recognizable name for your server (e.g., <code>Context7 Docs</code>).</li>
+<li><strong>Transport:</strong> Select <code>HTTP (Streamable)</code>.</li>
+<li><strong>URL:</strong> The full endpoint URL (e.g., <code>https://mcp.context7.com/mcp</code>).</li>
+<li><strong>Headers (KEY=VAL,...):</strong> Comma-separated HTTP headers, typically used for authentication (e.g., <code>Authorization=Bearer YOUR_API_KEY_HERE</code>).</li>
 </ul>
-<h3 id="4-interactive-scripting-with-bookmarks"><a class="zola-anchor" href="#4-interactive-scripting-with-bookmarks" aria-label="Anchor link for: 4-interactive-scripting-with-bookmarks">🔗</a>4. Interactive Scripting with Bookmarks</h3>
+<hr />
+<h2 id="managing-your-servers"><a class="zola-anchor" href="#managing-your-servers" aria-label="Anchor link for: managing-your-servers">🔗</a>Managing Your Servers</h2>
+<p>Once added, your servers will appear in the MCP list in Preferences.</p>
 <ul>
-<li><strong>The Scenario:</strong> You have a common deployment or cleanup script you run frequently, but it requires different parameters each time.</li>
-<li><strong>The Boxxy Way:</strong> Save the script as a <strong>Bookmark</strong> using <code>{{{project_name}}}</code> variables. When you run it from the Command Palette, Boxxy natively prompts you for the dynamic inputs, executes the script, and its agent monitors the output to ensure everything ran successfully.</li>
+<li><strong>Toggle:</strong> You can quickly enable or disable a server using the switch next to its name.</li>
+<li><strong>Edit:</strong> Click the pencil icon to modify the command, arguments, or API keys without having to delete and recreate the server.</li>
+<li><strong>Delete:</strong> Click the trash icon to permanently remove the server configuration.</li>
 </ul>
-<h3 id="5-context-aware-log-analysis"><a class="zola-anchor" href="#5-context-aware-log-analysis" aria-label="Anchor link for: 5-context-aware-log-analysis">🔗</a>5. Context-Aware Log Analysis</h3>
-<ul>
-<li><strong>The Scenario:</strong> You're tailing <code>journalctl</code> or a production log file and spot a recurring system error that makes no sense.</li>
-<li><strong>The Boxxy Way:</strong> Press <code>Control + /</code> and ask: "What does this kernel panic mean?" Boxxy analyzes the surrounding log context in your terminal buffer, looks up documentation using its Web Search tool, and explains the root cause without you ever leaving the terminal.</li>
-</ul>
+<hr />
+<h2 id="how-it-works-under-the-hood"><a class="zola-anchor" href="#how-it-works-under-the-hood" aria-label="Anchor link for: how-it-works-under-the-hood">🔗</a>How it Works (Under the Hood)</h2>
+<p>Boxxy is designed to be blazingly fast. To ensure your terminal boots instantly, Boxxy uses a <strong>"Lazy Boot"</strong> strategy for MCP servers.</p>
+<p>When you add a server, Boxxy fetches its list of available tools and caches them. When you open a new terminal pane, the agent immediately knows what tools are available, <em>but it doesn't actually start the background processes (like <code>npx</code>) until you ask it to use one of those tools.</em></p>
+<p>This means you can configure dozens of heavy MCP servers without experiencing any startup lag! Furthermore, Boxxy implements strict lifecycle management, guaranteeing that when you close a pane or exit the app, all local MCP child processes are instantly terminated to prevent "zombie" processes from lingering on your system.</p>
 
                     
 
                     <hr style="margin-top: 3rem; background-color: #313244; height: 1px;">
                     <div class="has-text-right">
-                        <a href="https://github.com/miifrommera/boxxy-website/edit/main/content&#x2F;use-cases.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">
+                        <a href="https://github.com/miifrommera/boxxy-website/edit/main/content&#x2F;mcp.md" target="_blank" style="color: #a6adc8; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;" onmouseover="this.style.color='#f5e0dc'" onmouseout="this.style.color='#a6adc8'">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                             Improve this page
                         </a>
