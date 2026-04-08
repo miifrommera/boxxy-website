@@ -71,13 +71,6 @@ See more at [How It Works](@/how-it-works.md#resume-session).
 
 --- 
 
-## Agent Skills
-From =Preferences=, open the =config folder= and navigate to `boxxyclaw/skills`. Boxxy supports standard [Agentic Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) (and a dedicated Boxxy Skills marketplace is planned!). 
-
-Be sure to add your specific system specifications to the default "linux-system" skill so Boxxy understands your environment perfectly.
-
---- 
-
 ## Memories
 
 Boxxy is a self-improving system driven by =Memories=. Tell BoxxyClaw something like ='My favorite editor is micro'=, and Boxxy will remember your preference for next time!
