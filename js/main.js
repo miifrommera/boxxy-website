@@ -1,5 +1,5 @@
 // GitHub Star Count Fetcher
-fetch('https://api.github.com/repos/miifrommera/boxxy')
+fetch('https://api.github.com/repos/boxxy-dev/boxxy')
     .then(response => response.json())
     .then(data => {
         const stars = data.stargazers_count;
