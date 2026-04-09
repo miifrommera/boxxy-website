@@ -49,7 +49,7 @@
             <div class="column is-10">
                 <p class="has-text-centered mb-3" style="color: #a6adc8; font-weight: 600; font-size: 0.9rem;">Native Nightlies (Requires GTK 4.22+)</p>
                 <div class="installation-code fancy-box mt-0 mb-6" style="position: relative; text-align: left; display: flex; align-items: center;">
-                    <pre style="flex-grow: 1;"><code id="install-command" class="language-bash">curl -sSf https://raw.githubusercontent.com/miifrommera/boxxy/main/scripts/install.sh | sh</code></pre>
+                    <pre style="flex-grow: 1;"><code id="install-command" class="language-bash">curl -sSf https://raw.githubusercontent.com/boxxy-dev/boxxy/main/scripts/install.sh | sh</code></pre>
                     <button id="copy-button" class="button is-small" style="position: absolute; right: 0.75rem; background-color: #313244; color: #cdd6f4; border: none; border-radius: 6px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;" title="Copy to clipboard">
                         <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                         <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#11111b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -58,9 +58,9 @@
 
                 <p class="has-text-centered mb-3" style="color: #a6adc8; font-weight: 600; font-size: 0.9rem;">Flatpak Stable (Recommended)</p>
                 <div class="installation-code fancy-box mt-0" style="position: relative; text-align: left; display: flex; align-items: center;">
-                    <pre style="flex-grow: 1;"><code id="flatpak-install-command" class="language-bash">curl -O https://miifrommera.github.io/boxxy-flatpak-remote/boxxy.gpg && \
+                    <pre style="flex-grow: 1;"><code id="flatpak-install-command" class="language-bash">curl -O https://boxxy-dev.github.io/boxxy-flatpak-remote/boxxy.gpg && \
   flatpak remote-add --user --if-not-exists --gpg-import=boxxy.gpg \
-  boxxy https://miifrommera.github.io/boxxy-flatpak-remote/repo && \
+  boxxy https://boxxy-dev.github.io/boxxy-flatpak-remote/repo && \
   flatpak install --user boxxy dev.boxxy.BoxxyTerminal</code></pre>
                     <button id="flatpak-copy-button" class="button is-small" style="position: absolute; right: 0.75rem; background-color: #313244; color: #cdd6f4; border: none; border-radius: 6px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;" title="Copy to clipboard">
                         <svg id="flatpak-copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
